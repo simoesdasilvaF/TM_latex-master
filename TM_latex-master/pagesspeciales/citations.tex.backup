@@ -1,0 +1,18 @@
+\section*{}  % Here you can put an inspiring quote or a special dedication...
+
+\begin{flushright}
+\vspace{1.5cm}
+\squote{Imaginez un monde dans lequel chaque personne pourrait partager librement l'ensemble des connaissances humaines.}\\
+\vspace{0.2cm}
+\textit{- Jimmy Wales. Fondateur de Wikipedia.}
+\end{flushright}
+
+% or a special dedication
+
+\vspace*{5cm}
+\begin{center}
+\textit{J'aimerais ici remercier toute ma famille qui subit depuis maintenant de nombreux mois les effets du CAS, puis du DAS stoïquement. L'incertitude de la nécessité d'un tel projet s'aténue en pensant aux bénéfices qu'elle en tirera peut-être un jour.}
+\bigskip
+\textit{J'aimerais aussi remercier l'équipe du NTE (}
+\end{center}
+

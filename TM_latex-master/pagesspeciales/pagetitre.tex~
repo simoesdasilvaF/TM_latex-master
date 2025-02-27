@@ -1,0 +1,46 @@
+\begin{titlepage}
+\begin{center}
+    \vspace*{1.5cm}
+
+    \begin{Huge}
+        {\sf \worktitle \\}
+    \end{Huge}
+    \vspace{0.4cm}%
+    \ifthenelse{\equal{\worksubtitle}{}}{}{\begin{Large} {\sf \worksubtitle} \end{Large}}%
+
+    % Si nécessaire, votre propre image
+    %\vspace{1cm}
+    %\includegraphics[height=1.5cm]{figures/projectLogo.eps}
+   
+    ~
+    \\[2.0cm]
+
+    
+     \begin{normalsize}
+	{\textsc{\worktype}}\\
+     \end{normalsize}
+    ~
+    \\[1.5cm]
+     \begin{lARGE}
+	{\textsc{\theauthor}}\\
+        \vspace{0.2cm}
+     \end{lARGE}
+     \begin{large}
+        {\workdate}
+     \end{large}
+    
+    ~
+    \\[2.5cm]
+    
+    \textbf{\supervisorslabel}:\\
+    \vspace{0.2cm}
+    \worksupervisors
+    \vspace*{1.5cm}
+    ~
+    \\[1.0cm]
+
+    \titlepagefooter
+
+\end{center}
+
+\end{titlepage}

@@ -1,0 +1,23 @@
+\@doanenote {1}
+macro:->Exemple
+de
+référence
+référence
+précise
+dans
+une
+note
+de
+pied
+de
+page
+pour
+la
+citation
+de
+Jimmy
+Wales,
+page
+\pageref
+{wales}.
+\@endanenote 

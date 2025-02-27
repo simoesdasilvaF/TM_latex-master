@@ -1,0 +1,253 @@
+\chapter{Configuration} \label{chapter:configuration}
+
+Ce chapitre présente essentiellement le fichier \src{config.tex} qui permet la configuration générale du travail de maturité.
+
+\section{Config.tex}
+
+Au \squote{c\oe ur} de la configuration du travail de maturité se trouvent une série de questions posées au rédacteur qui permettent de mettre à sa disposition les différents éléments dont il va avoir besoin. Ces questions se trouvent regroupées dans le fichier \apath{config.tex} sous différentes sections.
+
+\begin{description}
+ \item[La page de titre] S'y trouvent définis les titre et sous-titre du travail, le type de travail, l'auteur, la date et le mentor.
+ \item[Le pied de page] S'y trouvent définis le domaine, c'est-à-dire l'option spécifique ou autre, du travail ainsi que la langue du pied de page.
+ \item[Citations, remerciements, acronymes, licence, site officiel, cdrom, index] On peut choisir ici de mettre une page contenant une pensée ou citation, une page contenant un préambule, une dédicace, des remerciements, une page contenant un résumé, une page d'acronymes, une page présentant la licence du travail, une page présentant le site associé au travail, une autre le cdrom associé et enfin une page d'index.
+ \item[Chapitres] On définit ici le nombre de chapitres qu'on désire. Des fichiers chapter1.tex, chapter2.tex \dots{} chapter9 sont déjà présents dans le répertoire associé \apath{chapters}. Il suffit alors de remplir ceux dont on a besoin. Si on veut plus de dix chapitres, il faut simplement copier l'un d'entre eux et en rajouter le bon nombre sous la forme chapter10.tex, chapter11.tex \dots{} et d'en définir le nombre correctement.
+
+ On définit aussi la présence d'une mini-table des matières en tête de chapitre. Pour cela, il faut commenter ou décommenter (à l'aide du \%) la ligne correspondant au Yes ou No (Y ou N respectivement).
+ \item[Listes des figures, tables et listings] On définit ici la présence d'une page contenant la lise des figures et/ou la liste des tables et/ou la liste des listings. Pour cela, il faut commenter ou décommenter (à l'aide du \%) la ligne correspondant au Yes ou No (Y ou N respectivement).
+ \item[Figures] On définit ici le chemin par défaut vers le répertoire des figures. Le point correspond au répertoire ou se trouve le fichier \apath{main.tex}.
+ \item[Insertion de code : listings] Le package listings permet d'insérer du code dans latex. Plusieurs langages sont disponibles, par exemple HTML et PHP. Mais seul latex est appelé par défaut. On peut charger d'autres languages pour les listings selon le modèle de la ligne suivante :
+ \lstinline!\lstloadlanguages{HTML,PHP,TeX}!.
+ \item[Version provisoire] Si vous travaillez avec une version provisoire, cette commande imprime un filigrane en haut à gauche de chaque page. Commentez la pour la version finale.
+ \item[Le texte] Se règle ici l'indentation de la première ligne de chaque paragraphe. Différentes possiblilités sont présentes et il suffit d'en choisir une en la décommentant.
+ \item[Un index] Il n'est pas nécessaire de réaliser un index. Par défaut, il n'y en a pas. Décommentez cette ligne si vous en voulez un. Attention, pour construire le fichier d'index idx, il doit être compilé avec makeindex en ligne de commande.
+\end{description}
+
+\begin{comment}
+\listingref{listing:manifeste}.
+
+\begin{lstlisting}[float,caption={Le manifeste : manifest.manifest},label={listing:manifeste}]
+CACHE MANIFEST
+
+# Version 10.4 (*@ \label{codeline:version} @*)
+
+# A mettre en cache. Attention, la page index.html est cachee par defaut
+# comme le manifest lui-meme.
+CACHE: (*@ \label{codeline:cache} @*)
+offline.html
+css/android.css
+css/desktop.css
+
+# A aller chercher sur le net (meme s'il est en cache ?)
+NETWORK: (*@ \label{codeline:network} @*)
+# Si je decommente la ligne suivante, il refusera le fallback sur offline.html
+#ONOFFlineTest.html
+js/h5utils.js
+
+# A remplacer si la ressource est dans network et qu'on est hors ligne
+FALLBACK: (*@ \label{codeline:fallback} @*)
+ONOFFlineTest.html offline/offline.html
+online/online.html offline/offline.html
+onlineAccueil,js offlineAccueil.js
+\end{lstlisting}
+
+Ce fichier est découpé en trois parties : la partie CACHE, ligne \ref{codeline:cache}, la partie NETWORK, ligne \ref{codeline:network} et la partie FALLBACK, ligne \ref{codeline:fallback} du listing \ref{listing:manifeste}.
+
+\subsection{Détection du manifeste}
+
+
+
+% This is the correct way to insert a figure
+% The 1st argument: the filename (without the extension, the file is located in the figures subfolder)
+% The 3rd argument: is the caption
+% The 4th argument: the label (for references)
+\tmfigureT{barcode}{EAN-8 representation of the number 2402820}{fig:barcode}
+
+% This is the correct way to make reference to a figure:
+An EAN-8 representation is show in \figref{fig:barcode}.
+
+
+\subsection{Les outils d'analyse} \label{subsec:outils_analyse}
+
+Un certains nombre d'outils d'analyse\index{outils d'analyse} sont nécessaire pour suivre l'évolution des caches. Sous Firefox, on peut avoir accès aux caches par le code \ref{listing:cachefirefox}.
+
+\begin{lstlisting}[float,caption={Le cache de Firefox},label={listing:cachefirefox}]
+about:cache
+\end{lstlisting}
+
+dans la barre d'URL. La figure \figref{fig:about_cache} permet de voir les indications fournies. De plus, une liste des fichiers en cache est disponible, ce qui est très pratique. Sous Chromium\index{Chromium} ou Chrome\index{Chrome}, la commande précédente donne simplement une liste des fichiers en cache, ce qui n'est pas très pratique. Il faut donc passer par les \squote{outils de développement} du menu \squote{outil} qui permettent d'avoir accès aux \squote{Ressources}, notamment le cache d'application. Plus clairement qu'avec Firebug, ces outils de développements proposent alors une liste des fichiers mis en cache d'application.
+
+% This is the correct way to insert a figure
+% The 1st argument: the filename (without the extension, the file is located in the figures subfolder)
+% The 3rd argument: is the caption
+% The 4th argument: the label (for references)
+\tmfigureS{about_cache}{Les caches sous Firefox}{fig:about_cache}
+
+Il faut relever un piège avec Firebug\index{Firebug} sous Firefox. En explorant le DOM\index{DOM}, on trouve l'entrée applicationCache. Or, même si le cache d'application contient des fichiers, cette entrée mentionne toujours \verb=0 items in offline cache=. Pour moi, la raison de ce fait reste encore inexpliquée et elle m'a fait perdre beaucoup de temps.
+
+Une autre manière de faire est de suivre les transactions à travers les logs du serveur web. Pour Apache, il se trouvent à l'adresse \apath{/var/log/apache2/access.log}.
+
+Pour voir le fichier, il faut naturellement être en root. On peut alors en voir la fin par la commande \ref{listing:lecturelogs}.
+
+\begin{lstlisting}[float,caption={Lecture des logs},label={listing:lecturelogs}]
+tail -f access.log
+\end{lstlisting}
+
+\section{Interface graphique} \index{Interface graphique}
+
+L'ergonomie d'une application embarquée doit être très claire. Celle d'un site peut être visuellement plus complexe. Il est donc nécessaire de fournir un maximum de renseignements sur le site et d'épurer, de minimiser voire de supprimer ceux-ci dans la version embarquée.
+
+Pour l'instant, tout est très simple. Aucune recherche particulière n'a été faite pour obtenir une bonne qualité graphique de l'interface. L'idée est de laisser à la bibliothèque \squote{Jquery mobile}\index{Jquery mobile} le soin de réaliser la mise en page. Cela fonctionne en partie. Deux problèmes persistent cependant. Le premier est une certaine lenteur lors des effets graphiques tels que les changement de page. L'autre est la désactivation des feuilles de style\index{feuille de style} de \squote{Jquery mobile} sur la page de la carte de vocabulaire. Je pense pouvoir trouver dans un délai raisonnable une solution à chacun de ces problèmes. Mais, je n'ai pas encore eu le temps de le faire. C'est pourquoi j'ai désactivé \squote{Jquery mobile}.
+
+Évidemment, l'utilisation de \squote{Jquery mobile} serait un avantage du point de vue de la prise en charge d'une multitude de plateformes sans qu'il soit nécessaire d'effectuer moi-même des test pour chacune d'elles. C'est pourquoi je vais investir encore du temps pour tenter une bonne intégration. Mais, au vu des ralentissements, un développement graphique réalisé par mes soins ou à l'aide d'élèves web-designers reste présent dans mon esprit.
+
+Je ne mettrai donc pas l'accent ici sur la conception purement graphique de Turn comme la recherche d'une identité graphique\index{identité graphique}, d'une palette de couleurs adaptée (les tons sombres sont plus adéquats sur les smartphones) ou un choix de types de transitions entre les pages. Je vais simplement les présenter et en indiquant leurs besoins en terme d'éléments fonctionnels en tentant une première approche des difficultés liées à leur utilisation sur les téléphones.
+
+\subsection{Analyse des besoins}
+
+Divers éléments sont nécessaires dans tous les cas.
+
+\smallskip
+Actuellement, on trouve sur la page d'accueil\index{page d'accueil} (voir figure \ref{fig:pageindex}, page \pageref{fig:pageindex}) un petit texte expliquant ce qu'on peut faire en mode connecté ou déconnecté. Puis, se trouve un simple lien vers la page suivante. Il est nécessaire que ce lien apparaisse sous la forme d'un bouton assez grand pour qu'il soit aisé d'appuyer sur celui-ci avec le doigt sur un smartphone. Aucune indication ne devant être transmise à la page suivante, il n'est pas nécessaire d'avoir un vrai bouton.
+
+\subsubsection{Sur site}
+Du côté embarqué, vient ensuite la page d'authentification\index{page d'authentification} (voir figure \ref{fig:pageconnection}, page \pageref{fig:pageconnection}). Très simple, elle nécessite trois champs \verb|input| et un lien de retour sur la page d'accueil.
+
+Les champs font partie d'un formulaire. Le premier permet l'entrée d'un texte, le login\index{login} de l'utilisateur. Le second est de type \verb|password| de manière à ne présenter que des caractères cachés. Le dernier et de type \verb|submit| pour valider le formulaire.
+
+\smallskip
+Puis, vient le choix de charger un test déjà enregistré, d'en réaliser un nouveau ou de revenir sur la page d'accueil. Rien de particulier, trois liens suffisent (voir figure \ref{fig:pageonline}, page \pageref{fig:pageonline}).
+
+\smallskip
+Du côté du chargement d'un test préenregistré\index{test préenregistré} en ligne, une liste des tests doit apparaître (voir figure \ref{fig:pagetestsEnregistres}, page \pageref{fig:pagetestsEnregistres}). Chaque test est constitué de deux boutons. Le premier pour accéder au test lui-même et le second pour le supprimer. Il s'agit de deux formulaires constitués d'\verb|input| de type \verb|submit|. Mais, il faut relever qu'il a été nécessaire, pour des raisons techniques, d'utiliser un champ caché\index{champ caché}, un \verb|input| de type \verb|hidden|. Nous n'en reparlerons qu'au paragraphe \ref{choix}, puisque aucune mise en forme n'est nécessaire pour lui.
+
+Puis, deux liens permettant d'effectuer un nouveau test et de revenir sur la page d'accueil sont présenté.
+
+\smallskip
+Du côté de la réalisation d'un nouveau test\index{nouveau test}, on commence par présenter une liste des répertoires disponibles (voir figure \ref{fig:pagenouveauTest}, page \pageref{fig:pagenouveauTest}). Cela est réalisé par une balise \verb|select| placée à l'intérieur d'un formulaire. Une liste d'\verb|option| est créée ensuite à l'intérieur du \verb|select|. Un \verb|input| de type \verb|submit| permet d'envoyer le choix effectué.
+
+\smallskip
+Puis, on présente les choix de la sélection\index{choix de la sélection}, par page ou par chapitre, et du type\index{type} de test, normal ou inverse  (voir figure \ref{fig:pagechoixTypeSelection}, page \pageref{fig:pagechoixTypeSelection}). Il s'agit d'un unique formulaire comprenant deux champs dans lesquels se trouvent chaque fois deux \verb|input| de type \verb|radio| et de même nom dans chaque champ, \verb|selection| ou \verb|type| respectivement. Un champ \verb|submit| termine le tout pour envoyer les données.
+
+\smallskip
+Vient enfin la sélection\index{sélection} des chapitres ou pages selon le choix (voir figure \ref{fig:pageselection}, page \pageref{fig:pageselection}). Il s'agit d'un formulaire à l'intérieur duquel se trouve une balise \verb|select| remplie par une liste d'\verb|option| correspondant à chaque chapitre ou page. Il faut relever ici le paramètre \verb|multiple="multiple"| qui permet de sélectionner plusieurs chapitres ou pages simultanément. Le tout est toujours finalement terminé par un champ \verb|submit| pour envoyer les données sélectionnées.
+
+\medskip
+Enfin, vient la carte de vocabulaire\index{carte de vocabulaire} du mode en ligne\index{mode en ligne} (voir figure \ref{fig:pageTest}, page \pageref{fig:pageTest}). Elle est constituée d'un formulaire à l'intérieur duquel se trouve une balise \verb|div| constituant la carte. A l'intérieur de celle-ci se trouvent trois \verb|input| de type \verb|submit| et de même nom \verb|navig|. Le premier, de valeur \verb|X|, correspond au bouton annuler\index{annuler}. Le second, de valeur \verb|<?php echo $mot?>| contient le mot et, quand on le presse, correspond à l'action de retourner la carte\index{retourner la carte} pour faire voir la traduction\index{traduction}. Enfin, le dernier, de valeur \verb|>>| correspond à un changement de carte\index{changement de carte}, c'est-à-dire à un changement de mot.
+
+Cette structure très simple est suffisante. Seuls la gestion de l'apparence de la carte peut poser quelques problèmes. On verra au paragraphe \ref{css} comment y parvenir sans trop de difficultés.
+
+\subsubsection{Embarqué}
+Du côté embarqué\index{embarqué}, on trouve deux pages spécifiques qui correspondent au mode hors ligne\index{mode hors ligne}.
+
+\smallskip
+Premièrement, il s'agit de la page de chargement d'un test préenregistré hors ligne (voir figure \ref{fig:pageoffline}, page \pageref{fig:pageoffline}). En raison de l'utilisation de \squote{Javascript}\index{Javascript} pour la gestion des pages hors ligne, celle-ci est très simplement composée d'une balise \verb|div| et d'un lien en retour sur la page d'accueil. A l'intérieur de la balise \verb|div| est inséré dynamiquement par un script \squote{Javascript} deux \verb|input|. Le premier prend une valeur décrivant le vocabulaire mémorisé et réalise sur clic la récupération des mots. Le second prend la valeur \verb|X| et efface le vocabulaire en question.
+
+\smallskip
+Secondement, il s'agit de la carte de vocabulaire\index{carte de vocabulaire} du mode hors ligne\index{mode hors ligne}. Son aspect est exactement celui de la carte du mode en ligne (voir figure \ref{fig:pageTest}, page \pageref{fig:pageTest}). Elle est constituée des mêmes éléments, mais les balises d'\verb|input| sont plus simple en raison de l'utilisation de \squote{Javascript}.
+
+\subsection{CSS}\label{css}\index{CSS}
+Le projet étant finalement assez simple, seules deux feuilles de style\index{feuille de style} ont été nécessaires. Malgré des redondances entre elles qui auraient pu permettre une fusion en une seule feuille, elles ont été maintenues clairement séparées. En effet, elles correspondent au deux côtés bien distincts du site et de l'embarqué. Pour l'instant beaucoup de choses sont communes, mais à l'avenir cela ne devait plus être le cas, les besoins du site étant très différents de ceux induits par les smartphones\index{smartphone}.
+
+\subsubsection{Détection du matériel}
+La détection\index{détection du matériel} du type de terminal\index{type de terminal} utilisé se fait dans l'entête du document HTML. Il s'agit de la balise du code \ref{listing:detectterm}.
+
+\begin{lstlisting}[float,language=HTML,caption={Détection du terminal},label={listing:detectterm}]
+ <meta name="viewport" content="user-scalable=no,width=device-width,initial-scale=1.0,maximum-scale=1.0" />
+\end{lstlisting}
+
+La directive \verb|user-scalable=no| empêche de zoomer et les deux derniers paramètres verrouillent l'échelle. On tient compte des dimensions de l'écran utilisé grâce à l'attribut \verb|width=device-width|.
+
+\smallskip
+Il faut relever deux balises meta concernant l'Iphone, notamment pour supprimer la barre d'adresse, qui ne fonctionnent pas sur Androïd\index{Androïd}. Je les ai laissées pour les tests sur Iphone\index{Iphone}.
+
+\bigskip
+En fonction de l'écran détecté, on choisit ensuite une feuille de style adaptée à l'aide du \verb|media| de la balise \verb|link|, comme présenté dans le code \ref{listing:feuillesstyle}.
+
+\begin{lstlisting}[float,language=HTML,caption={Feuilles de style},label={listing:feuillesstyle}]
+ <link rel='stylesheet' href='css/desktop.css' type='text/css' media='screen and (min-width: 481px)' />
+ <link rel='stylesheet' href='css/android.css' type='text/css' media='only screen and (max-width: 480px' />
+\end{lstlisting}
+
+On utilise ici les \squote{Media Queries de CSS3}\index{Media Queries}\index{CSS3}. L'attribut \verb|media| permet en effet de spécifier précisément les feuilles de style ou les styles à utiliser en fonction des écrans. Le code \ref{listing:feuillesstyle} présente une manière de faire un choix de feuilles de style en fonction de l'écran, mais on peut aussi écrire cela directement dans un feuille de style, comme présenté dans le code \ref{listing:mediafeuillesstyle}.
+
+\begin{lstlisting}[float,language=HTML,caption={Media dans une feuille de style},label={listing:mediafeuillesstyle}]
+ @media screen and (min-width: 481px) {
+   regles css;
+ }
+\end{lstlisting}
+
+Évidemment, il existe un vocabulaire et une syntaxe simple pour imposer les conditions de choix des écrans (voir \citeweb{wdew}).
+ 
+\subsubsection{Les feuilles de style}
+Les deux feuilles de style présentes \verb|desktop| et \verb|android| sont découpées en trois parties.
+\begin{description}
+ \item[Paramètres généraux]\index{paramètres généraux} contient les spécifications de la page, du corps, des titres et d'alignements.
+ \item[Paramètres spécifiques]\index{paramètres spécifiques} contient les paramètres relatifs aux boutons, aux balises de sélection, aux listes et aux champs. De plus, on y trouve la description des \squote{boutons} permettant de sélectionner les tests enregistrés.
+ \item[La carte de vocabulaire]\index{carte de vocabulaire} contient la partie la plus conséquente de la feuille de style. Évidemment, il s'agit de la description de la carte de vocabulaire.
+
+ Celle-ci se compose d'une première balise \verb|div| (\#reponse) autour de laquelle on place une petite bordure pour éviter un bord à bord de l'écran.
+
+ Puis vient celle qui représente la carte\index{la carte} (\#carte). Centrée dans la précédente par des marges automatiques, avec une petite bordure et légèrement moins longue que son conteneur, elle présente si possible des bords arrondis d'un rayon de dix pixels.
+
+ A l'intérieur de la carte se trouvent trois balises \verb|input|. L'une (\#mot) permet d'afficher le mot et sa traduction\index{traduction}. Elle est transparente, sans bordure extérieure et fait 60\% de son conteneur. Le reste sert au deux autres boutons. Une bordure intérieure en haut et en bas est fixée. Signalons que la taille de la police n'est pas la même pour le desktop et pour Androïd. Cela dit, il est très difficile de fixer une taille de police pour les smartphones, car des phrases peuvent se trouver dans le vocabulaire à réviser.
+
+ Dans l'espace restant (40\%), on place les \verb|input| associés aux \squote{boutons} pour annuler (\#annuler) et passer au mot suivant (\#suivant). Pas de marges extérieures, pas de bordures, fond transparent, une marge interne haute et basse et une largeur de 20\%.
+
+ Pour faire la différence entre le \squote{bouton} d'annulation et celui pour le mot suivant, on définit la les classe d'\verb|input| gauche et droite comme des flottants\index{flottant} à gauche et à droite.
+\end{description}
+
+
+
+
+% -------------------------------------------------------------
+
+\begin{table}
+\begin{tabularx}{\linewidth}{|X|X|X|}
+\hline \textbf{Type} & \textbf{Communication} & \textbf{Characteristics}\\
+\hline  Memory cards & Using galvanic contact. & Cheap and widely used. Contains only a memory, usually of type EEPROM.\\
+\hline  Microprocessor cards & Using galvanic contact. & Contains a microprocessor which facilitates rapid adaptation to new applications.\\
+\hline Contact-less smart cards & Without galvanic contact but need to be really close to the reader. & Can be either a memory or a microprocessor card.\\
+\hline
+\end{tabularx}
+\caption{A quick overview of the different smartcards}
+\label{table:type_of_smartcards}
+\end{table}
+
+% Here one can see how to put text between quotes:
+Java enforces the \squote{Write Once, Run Anywhere} principle.
+
+% This is the correct way to make reference to a table.
+A very good overview is given in \tableref{table:type_of_smartcards}.
+
+% Here we make a reference to a web resource (in the web bibliography).
+These informations were retrieved from \citeweb{wRFIDSoft}.
+
+% Here we make a refernce to a normal resouce (standard bibliography).
+A more detailed description is provided by \cite{Shepard}, \cite{Collins} or \cite{Mahmoud}.
+
+% In-line source code (class names, paths, method names,...)
+The class which is responsible for all the lookup and caching tasks is \src{ch.unifr.ebay.util.Locator} which implements the \src{ch.unifr.ebay.Lookup} interface. The \src{lookup()} method\footnote{This method is very analog to the \footsrc{lookdown()} method.} is its most relevant service.
+
+% Use following command to typeset URLs, pathes, email adresses:
+Following file is the root\footnote{This URL is a shortcut to the official website on the University server: \apath{http://www.berkeley.com/cs/student-projects/bobby/index.jsp}}
+ of my report \apath{/home/genius/uni/master/report/src/main.tex} and this URL \apath{http://diuf.unifr.ch/softenggroup/student-projects/completed/05-06/bobmarley/master.php} provides all the related information and stuff. You can send me your comments by email at following adress: \apath{bob.marley@genius.org}
+
+% Here we have an example of the sinparaenum environment.
+There are three possibilities:
+\begin{sinparaenum}
+\item the first;
+\item the second;
+\item the third;
+\end{sinparaenum}
+to achieve this goal!
+
+\tmfigureN{smartcard_components}{General structure of a microprocessor smart card}{smartcard_components}
+
+% Here you see how to use acronyms. Don't forget to define the meaning of the acronym in the corresponding appendix.
+Do you know about \ac{XML}? The word \ac{XML} is used as an example of acronym here. Each time you use
+it, tpye \ac{XML} and Latex will automatically expand the acronym only for its first occurence!
+If we need it explained again, you can force the explanation of the acronym by writing \acf{XML}.
+
+% If acronyms appear in titles you have to type it manually
+
+\end{comment}

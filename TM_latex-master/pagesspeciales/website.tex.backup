@@ -1,0 +1,39 @@
+\chapter{Page web du projet}\label{appendix_website}
+
+La page web officielle de ce projet est: \apath{http://www.cvgg.org/Turn/index.html}.
+
+\section{Remarques}
+Attention, la détection du mode en ligne n'est pas encore pleinement fonctionnelle. Parfois elle se trompe. Si vous constatez un message vous informant que vous êtes en ligne et que vous savez ne pas l'être, rechargez simplement la page et vous devriez passer hors ligne.
+
+Par ailleurs, pour avoir du vocabulaire enregistré hors ligne, il faut en faire le choix préalablement en ligne. Commencez donc par utiliser Turn en ligne une première fois complètement. Puis, testez le mode hors ligne.
+
+Vous trouverez ci-dessous des captures d'écran présentant le fonctionnement de Turn. Par contre, aucune capture de la page officielle du site, puisqu'il n'y en a pas encore.
+
+Deux comptes spécifiques pour MM. Pasquier et Kosmaczewski ont été créés. Leur identifiant est leur nom tel qu'écrit ici et leur mot de passe Kfr43*r.
+
+\section{Captures d'écran}
+Voici une série de captures d'écran couvrant l'ensemble des pages du projet Turn. Elles ont été prises avec Gimp sous Firefox. Pour ne pas alourdir le texte, j'ai donné des références à ces captures dans le texte plutôt que de les y placer. La légende de chaque figure correspond au nom de la page sans son extension. Pour en comprendre la succession, il faut se référer à la figure \ref{fig:seqonline} de la page \pageref{fig:seqonline}.
+
+\medskip
+Les figures suivantes présentent :
+\begin{description}
+ \item[\ref{fig:pageindex}] la page d'accueil.
+ \item[\ref{fig:pageconnection}] la page d'authentification.
+ \item[\ref{fig:pageonline}] la page du choix d'un nouveau ou d'un test enregistré.
+ \item[\ref{fig:pagetestEnregistres}] l'ensemble des tests enregistrés en ligne (au moment de la capture d'écran).
+ \item[\ref{fig:pagenouveauTest}] le choix du répertoire.
+ \item[\ref{fig:pagechoixTypeSelection}] les choix de la sélection (page/chapitre) et du type (normal/inverse) de test.
+ \item[\ref{fig:pageselection}] les chapitres ou pages disponibles.
+ \item[\ref{fig:pageTest}] la carte de test.
+ \item[\ref{fig:pageoffline}] l'ensemble des tests enregistrés hors ligne (au moment de la capture d'écran).
+\end{description}
+
+\softengfigureB{index}{index.html}{fig:pageindex}
+\softengfigureB{connection}{connection.html}{fig:pageconnection}
+\softengfigureB{online}{online.php}{fig:pageonline}
+\softengfigureB{online}{testsEnregistres.php}{fig:pagetestEnregistres}
+\softengfigureB{nouveauTest}{nouveauTest.php}{fig:pagenouveauTest}
+\softengfigureB{choixTypeSelection}{choixTypeSelection.php}{fig:pagechoixTypeSelection}
+\softengfigureB{selection}{selection.php}{fig:pageselection}
+\softengfigureB{Test}{Test.php}{fig:pageTest}
+\softengfigureB{offline}{offline.html}{fig:pageoffline}

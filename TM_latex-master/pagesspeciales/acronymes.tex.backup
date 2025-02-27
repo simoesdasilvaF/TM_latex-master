@@ -1,0 +1,83 @@
+\chapter{Acronymes}\label{acronyms}
+
+% You have to sort them manually
+
+\begin{acronym}
+\acro{DAS}  {Diplom of Advanced Studies}
+\end{acronym}
+
+\begin{acronym}
+\acro{SQL}  {Structured Query Language}
+\end{acronym}
+
+\begin{acronym}
+\acro{PHP}  {Php Hypertext Preprocessor}
+\end{acronym}
+
+\begin{acronym}
+\acro{HTML}  {Hypertext Markup Language}
+\end{acronym}
+
+\begin{acronym}
+\acro{CVS}  {Concurrent Versions System}
+\end{acronym}
+
+\begin{acronym}
+\acro{AJAX}  {Asynchronous Javascript and XML}
+\end{acronym}
+
+\begin{acronym}
+\acro{FTP}  {File Transfer Protocol}
+\end{acronym}
+
+\begin{acronym}
+\acro{IDE}  {Integrated Development Environment}
+\end{acronym}
+
+\begin{acronym}
+\acro{XML}  {Extensible Markup Language}
+\end{acronym}
+
+\begin{acronym}
+\acro{API}  {Application Programming Interface}
+\end{acronym}
+
+\begin{acronym}
+\acro{MIME}  {Multipurpose Internet Mail Extensions}
+\end{acronym}
+
+\begin{acronym}
+\acro{cvgg}  {Céline et Vincent Guyot-Greim}
+\end{acronym}
+
+\begin{acronym}
+\acro{CHUV}  {Centre Horpitalier Universitaire Vaudois}
+\end{acronym}
+
+\begin{acronym}
+\acro{PDO}  {Php Data Object}
+\end{acronym}
+
+\begin{acronym}
+\acro{ADODB}  {database abstraction library for PHP}
+\end{acronym}
+
+\begin{acronym}
+\acro{GPL}  {Gnu Public Licence}
+\end{acronym}
+
+\begin{acronym}
+\acro{GFDL}  {Gnu Free Documentation Licence}
+\end{acronym}
+
+\begin{acronym}
+\acro{GNU}  {Gnu is Not Unix}
+\end{acronym}
+
+\begin{acronym}
+\acro{UTF8}  {UCS Transformation Format 8-bit}
+\end{acronym}
+
+\begin{acronym}
+\acro{NTE}  {Nouvelles Technologies et Enseignement}
+\end{acronym}

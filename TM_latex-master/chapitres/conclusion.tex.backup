@@ -1,0 +1,79 @@
+\chapter{Conclusion}
+Un travail comme celui-ci n'a pas de conclusion. Une fin provisoire tout au plus. Un petite pause pour constater l'ampleur du travail encore à réaliser. Une respiration pour faire le point sur l'évolution me paraît faire plus de sens, car il ne faut pas nier qu'apprendre en réalisant c'est d'abord se tromper. L'assumer c'est évoluer. Ma conclusion prendra donc la forme de cette évolution que je perçoit mieux maintenant que le projet est lancé. Mais la plupart des éléments de cette évoution restent non maitrisés et ils sont donné ici comme un memento des sujets à voir ou revoir préalablement à toute modification.
+
+\section{Évolution}
+
+Bien des points mériteraient d'être mentionnés ici. Pour mémoire de ce qu'il reste à faire, voici une liste non exhaustive et sans priorités des plus importantes corrections, modifications nécessaires dans un avenir proche.
+
+\begin{description}
+ \item[Détection des modes en et hors ligne.]\index{détection} Cela a été et cela reste le principal problème que j'ai rencontré. Malheureusement, ce problème est apparu relativement tôt et de ce fait j'ai perdu pas mal de temps à y trouver des solutions. Si c'est un problème important, il n'est pas bloquant. La détection est correctement réalisée dans la plupart des cas. Dans les cas ou elle ne l'est pas, on le remarque rapidement et en rechargeant la page, le problème disparaît.
+
+ J'ai mis ce probléme en premier, car c'est celui auquel je vais m'attaquer en priorité pour que Turn soit pleinement fonctionnel.
+ \item[Test sur difféfents smartphones.]\index{smartphone} Différents tests on été réalisés. Principalement, j'ai testé Turn sur mon téléphone tournant sous Androïd 2.2\index{Androïd 2.2}. Mais je l'ai teste encore sur ceux de mes fils sous Android 2.3\index{Android 2.3} et très récemment sous Android 4\index{Android 4} qui vient de sortir. A part la connectivité dont on vient de parler et qui reste un problème dans les trois cas, le seul véritable petit bug est le fait que les item des listes déroulantes\index{liste déroulante} n'apparaissent pas directement. Il faut cliquer sur la liste pour les voir apparaître dans une zone spéciale qui permet leur sélection.
+
+ \smallskip
+ Je n'ai pas testé Turn sur Iphone\index{Iphone}, parceque je n'en n'ai pas. Mais, j'ai trouvé trois personnes qui en disposent et je vais leur demander de faire des tests. Cela dit, cela n'est pas encore nécessaire puisque je prévois toujours l'utilisation de \squote{Jquery Mobile}\index{Jquery Mobile} et que faire des tests avant de l'avoir implanté me paraît inutile. C'est pourquoi je n'ai pas donnée une grande importance à ce probème pour la phase de construction de Turn.
+ \item[Réécriture en MVC.] Comme déjà dit, la structure de développement utilisée dans ce projet est \squote{orientée} MVC. Mais en réalité, elle n'assume pas pleinement ce type de développement. Sans vouloir utiliser un framework, il aurait été intéressant d'aller plus loin dans un développement MVC\index{développement MVC}. Le chapitre 8 de l'excellent ouvragre \cite{Quinton} pose les bases d'un tel développement dont les prémisses de trouvent déjà dans le code de Turn. Par manque de connaissances, j'ai débuté mon projet sans intégrer la notion de module\index{module}. Dans Turn, le controleur et le modèle sont une seule et même notion. Le découplage des fonctions de contrôle et de celles correspondant aux traitements internes n'est pas réalisé. On pourrait dire que Turn est construit autour d'un modéle VC (de là à parler de WC, il n'y a qu'un pas !), par rapport au modéle MVC intégrant véritablement un modèle. Cela dit, parler d'\squote{orientation} MVC n'est pas injustifié puisqu'à travers un regroupement des fonctions et les deux classes développées, on trouve l'embryon de l'idée de module. Mais, le pas de l'appel au contrôleur et au module grâce à l'instruction \ref{listing:modules} restait à faire.
+
+ \begin{lstlisting}[float,language=HTML,caption={Les modules du modèle},label={listing:modules}]
+  <a href='index.php?module=loginliste'>Liste des login</a>
+ \end{lstlisting}
+
+ Avec ensuite une liste des modules définissant dans un fichier XML\index{XML} le script PHP à exécuter et les droits associés, on attribue bien plus proprement la gestion des droits au contrôleur et celle des différents traitements internes aux modules.
+
+ Cela dit, une réécriture du code dans cette optique reste un travail assez important pour que des tests complémentaires soient nécessaires. Mais je suis persuadé que je devrai passer par là à l'avenir.
+
+ \item[Meilleurs enclassement.] Parallèlement à une réécriture en MVC, à cause des modules certainements mieux décrits à l'aide de classes, il faudra basculer probablement s'orienter vers un code plus objet\index{objet}. N'ayant jamais programmé en objet en PHP, cela n'était pas évident à priori. Mais je commence réellement à entrevoir l'utilité des classes à travers les modules. En cela l'ajout de la partie modèle vient non seulement clarifier la situation logique des éléments fonctionnels de Turn, mais aussi justifier pleinement une orientation objet\index{orientation objet}.
+
+ Une autre idée, rapidement évoquée avec M. Pasquier au détour d'une discussion à propos d'enclassement, est de réaliser une meilleures correspondance entre la structure de la base de donnée et celle de l'objet permettant d'y accéder. Certains langages et certains outils permettent, semble-t-il son automatisation. Qu'en est-il vraiment ? C'est un sujet à approfondir.
+ \item[Gestion de la base.] Évidemment, la gestion de la base de donnée par les utilisateurs est un objectif très important. Dans le cadre de l'option spécifique, pour des élèves dispostant de bases en PHP et d'une petite formation sous MySQL, il est possible d'imaginer un travail de maturité\index{travail de maturité} sur le sujet. Non qu'il ne soit pas intéressant d'y travailler soi-même, mais parceque cela me semble adéquat du point de vue de la matière et accessible du point de vue des difficultés à des élèves motivés comme j'en ai déjà connu.
+ \item[Réduction systématique du code.]\index{réduction du code} Un article très intéressant paru dans \cite{GuidonC} m'a rendu attentif à la nécessité de réduire au maximum le poids des fichiers utilisés. Notamment, le retrait des commentaires\index{commentaires} est déjà une chose envisageable facilement. Cependant, réalisée à la main, elle n'est pas pérenne car un site comme Turn va encore beaucoup évoluer et il n'est pas question de refaire sans cesse de tels retraits. Ce n'est donc pas une opération facile à réaliser, mais des méthodes existent pour faire une partie du travail automatiquement.
+ \item[Gestion des erreurs.]\index{gestion des erreurs} Il s'agit ici d'un point très important. Malheureusement, je n'ai pour l'instant que très peu de connaissances pour m'attaquer à ce point. Je suis conscient du problème, mais le seul langage où j'ai quelques connaissances en la matière est Python. Comme il ne s'agit pas simplement de mettre quelques exceptions parci parlà, il va me falloir apprendre à traiter ce problème avec méthode.
+ \item[Détection du HTML5.]\index{détection du HTML 5} Éventuellement, il pourrait être intéresant de savoir si le navigateur du client peut utiliser HTML5. Je cite ce point plus pour m'en souvenir que comme un nécessité à réaliser. De l'information à ce sujet est disponible sur la page \citeweb{wdetecthtml5}.
+ \item[Internationalisation.]\index{internationalisation} Sujet d'envergure, mais Turn en tant que logiciel de vocabulaire n'y coupera pas. Mais je ne vais pas parler de \squote{GetText}\index{GetText} dont vous trouverez une bonne introduction dans \cite{Bodor} et \cite{Bouchery}. Évidemment, c'est l'outil qu'il faudrait utiliser. Cependant, ayant fait une bonne expérience de traduction français-vietnamien d'un site en PHP pour le CHUV avec un simple tableau associatif\index{tableau associatif}, pour un petit projet comme Turn c'est la méthode que j'utiliserais.
+
+ Il s'agit simplement d'inclure un fichier permettant soit de tester si la langue est définie par ailleurs, soit de déterminer celle du navigateur, à l'aide d'une ligne comme la première du script \ref{listing:detectlang} tiré de mon projet pour le CHUV.
+ 
+ \begin{lstlisting}[float,language=PHP,caption={Détection de la langue},label={listing:detectlang}]
+  include("Lang/lang.inc.php");
+  ...
+  echo '<h2 class="confirmation">'.$Langue["Txt_Confirmation"];
+ \end{lstlisting}
+ 
+ Je ne donne pas ici le contenu du fichier \verb|lang.inc.php| pour des raisons de place. Mais selon la langue, il construit un chemin vers un fichier qui contient un tableau des traductions (voir le script \ref{listing:traductions}).
+
+ \begin{lstlisting}[float,language=PHP,caption={Traductions},label={listing:traductions}]
+  $Langue["Txt_HemoExtAct"]="Xuat huyet ngoai *";
+  $Langue["Txt_O2Adm"]="Tho oxy (Do noi chuyen ...) *";
+  ...
+ \end{lstlisting}
+
+ A l'aide de ce chemin, on peut ensuite récupérer les traductions et les mettre à disposition via la variable \verb|$Langue| de la fin du script \ref{listing:detectlang}.
+
+ \medskip
+ Ainsi, il faut simplement construire des fichiers contenant les traductions. Celles-ci sont séparées du code et il est envisageable d'écrire une interface pour réaliser les traductions simplement. Mais cela ne vaut pas GetText naturellement.
+ 
+ \item[Intégration de \squote{Jquery mobile}.] Une première tentative a déjà été réalisée. Un gain réel en terme esthétique au niveau des pages et des transitions entre elles est incontestable. Mais des problèmes sont apparus. Une lenteur plus importante est peut-être l'élément le plus inquiétant, car il ne milite pas en faveur de \squote{Jquery mobile}\index{Jquery mobile}. Mais, il semble que d'autres éléments posent problème. Notamment, l'adaptation des éléments des feuilles de style qui gèrent la carte de vocabulaire, car la substitution simple de celles-ci par celles de \squote{Jquery mobile} n'est pas totalement fonctionnelle.
+ \item[Validation du HTML5.]\index{validation} Toujours par manque de temps, aucune validation de la conformité du code au standard HTML5 n'a été faite. L'expérience montre que cela est toujours nécessaire et cette validation devra obligatoirement être faite tôt ou tard.
+ \item[Implantation sur Androïd.] Le problème de la barre d'URL qui reste présente lors de l'accès à Turn via les navigateurs embarqués est à résoudre. Cela est possible ...
+ \item[Documentation.] Comme pour l'internationalisation, il existe un logiciel phare pour produire la documentation qui se nomme \squote{Doxygen}\index{Doxygen}. L'idée est d'utiliser correctement les commentaires \verb|/** ... */| en introduidant à l'intérieur des étiquettes telles que \verb|@author|, \verb|@param| ou \verb|@return| pour spécifier des informations récupérables par \squote{Doxygen}. Celui-ci peut alors produire automatiquement une documentation en HTML, \LaTeX\index{\LaTeX} ou autre (voir \cite[pp. 194-203]{Quinton}).
+
+ Encore une fois, un important travail est encore nécessaire pour que Turn soit bien écrit de ce point de vue.
+ \item[Licence.]\index{licence} Un autre article (du même auteur que pour \cite{GuidonC}) présenté dans le même magazine \cite{GuidonL}, met en évidence les problèmes posés par l'adoption d'une licence telle que la GPL\index{GPL} dans les applications web libres. En effet, celle-ci nécessite de mettre à disposition le texte de la licence. Or, cela est contradictoire avec la réduction du poids des fichiers nécessaires pour une application web\index{application web}. Cette problématique va se poser pour Turn, puisque la licence adoptée est précisément la GPL v3\index{GPL v3}. Certains choix devront donc être faits de manière à respecter ses termes sans pour autant surcharger Turn. Ils nécessitent un travail de relecture attentive de l'article en question et probablement certains ajouts intelligents.
+ \item[Site web.] Finalement, le développement d'un véritable site consacré aux aspects de documentation, d'information et de publicité liés à Turn reste à réaliser. L'aide d'élèves de l'option spécifique d'informatique peut être particulièrement efficace dans ce domaine.
+\end{description}
+
+\section{Évolutions futures}\index{Futur}
+
+Je vois une évolution majeure à réalier dans le futur. Le probléme de MySQL\index{MySQL} au sein d'Oracle est très facheux. A terme, il me semble évident qu'il sera nécessaire de changer de base de donnée. Mais si PostgreSQL\index{PostgreSQL} ou MariaDB\index{MariaDB} est un bon candidat de remplacement, il pourrait être utile de réfléchir aux méthodes d'accès à la base de donnée indépendantes de celle-ci. On pense à PDO\index{PDO}, bibliothèque intégrée dans PHP (ou à ADODB, voir \cite[pp. 70-78]{Quinton}). Un travail d'avenir est à réaliser de ce côté là.
+
+\medskip
+L'autre évolution importante concerne la sécurité\index{sécurité}. C'est encore un paramètre que je maitrise mal. Mais, il est absolument nécessaire d'y faire face. Je vais le faire à l'aide de \cite{Seguy}, qui est consacré à la sécurité sous PHP5 et Mysql et me semble très complet.
+
+\section{Conclusion}
+Tout reste à faire. La version actuelle de Turn pourrait être qualifiée de 0.3 en ce qu'elle n'est pas encore totalement fonctionnelle du point de vue de la détection en-hors-ligne. Les bases sont cependant posées, même si elles le sont dans la double optique de la découverte de méthodes de programmation et de structuration d'une application réelle. Double optique parfois contradictoire.
+
+\medskip
+Enfin, voilà, l'expérience fut très enrichissante à beaucoup de points de vue. Reste qu'elle fut un travail solitaire. Certainement trop solitaire. Essentiellement parce que l'effort réalisé pour acquérir ce qui constitue somme tout des bases de programmation ne peut se faire que par un travail personnel. Même si je n'ai jamais douté de la disponibilité des professeurs Pasquier et Kosmaczewski, j'ai préféré faire seul mes propres erreurs et tenter de les gérer au mieux tout en restant critique, mais positif. J'espère qu'il ne m'en voudront pas.
+
+Effort solitaire certes, mais perspectives de travail en commun. Comme je l'ai dit au début du travail, PHP est relativement bien connu des élèves. De plus, cette année déjà certains m'ont fait par de leur désir de programmer sur des smartphones. Je pense donc pouvoir les orienter vers Turn dans cette optique et faire avec eux un bout de chenmin pour que cette petite application puisse évoluer. Turn restera donc probablement une application au double objectif de permettre la révision du vocabulaire et d'apprendre à programmer. Exactement ce qu'il est pour moi.

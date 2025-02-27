@@ -1,0 +1,9 @@
+\chapter*{Résumé}
+Turn est une esquisse d'application web permettant de revoir du vocabulaire. Elle comprend deux modes : en ligne et hors ligne. Programmée en PHP pour le mode en ligne et en Javascript pour le mode hors ligne, elle repose sur HTML 5 et ses possibilités de mémorisation sur smartphone et MySQL pour la base de donnée. Elle est loin d'être achevée, mais elle est déjà fonctionnelle. On peut y choisir des répertoires, le sens de révision, les chapitres ou les pages qu'on désire revoir. On peut les mémoriser en ligne et hors ligne pour revoir son vocabulaire à tout moment.
+
+Turn repose sur le principe d'une évaluation des connaissances par l'étudiant lui-même. Il présent des cartes de vocabulaire qu'on peut retourner ou passer. Le design n'est pas encore abouti.
+
+Turn a été réalisée en quelques mois et il lui en faudra encore plusieurs avant d'être pleinement fonctionnelle. Elle souffre du double objectif qui lui était assignée : me permettre d'apprendre à programmer et permettre aux autres d'apprendre du vocabulaire \dots
+% and keywords...
+\vspace*{1cm}
+\textbf{Mots clés:} web app., Turn, flashcard, vocabulaire, traduction

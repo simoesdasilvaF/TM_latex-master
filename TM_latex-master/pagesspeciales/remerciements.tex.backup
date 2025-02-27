@@ -1,0 +1,13 @@
+\chapter*{Remerciements}
+
+\textit{J'aimerais aussi remercier l'équipe du NTE (http://nte.unifr.ch/) de l'Université de Fribourg aux positions tout-à-fait remarquables sur l'intégration de l'informatique dans l'enseignement. Il est très rare de trouver des personnes qui mettent réellement l'informatique au service des disciplines et qui savent entendre leurs besoins. Trop souvent l'informatique nous est imposée. Celle que le NTE propose constitue un véritable enrichissement en ce qu'elle se limite volontairement à répondre aux problèmes existants. C'est beaucoup et c'est un choix qui fait toute sa valeur.}
+
+\vspace{1cm}
+\textit{La quasi intégralité de ce travail a été réalisée avec des logiciels libres.}
+
+\textit{Trois système d'exploitation ont été utilisés : Debian, Crunchbanglinux et ubuntu. Le développement a été réalisé successivement sous Quanta d'abord puis sous Bluefish. Le projet est hébergé sous Apache, tournant sous Debian. Débuté localement, il a été ensuite directement développé sur site à travers ssh. Le langage principal choisi, PHP est libre, de même que la base de donnée MySQL (pour combien de temps encore après le rachat d'Oracle ? Si MySQL devait à l'avenir perdre sa liberté, il ne fait aucun doute que d'autres solutions seraient envisagées). MySQL Workbench Community Edition, qui a été utilisé pour la modélisation de la base de donnée, est un logiciel open source. Les navigateurs sous lesquels Turn a été testé sont libres : Firefox et Chromium. Le logiciel qui a permis de rédiger ce texte est libre : \LaTeX. Celui qui a permis de réaliser les schéma et de prendre des captures d'écran le sont aussi : Inkscape et Gimp. Sans parler de la gravure de CDrom.}
+
+\textit{Javascript n'est pas libre. Mais il est actuellement à ma connaissance l'une des seules possibilités de développement pour smartphone qui peut convaincre un développeur libre. Chrome a aussi été utilisé pour les tests. Il n'est pas libre, mais il est parfois le seul navigateur sur smartphone dont une version libre existe.}
+
+\medskip
+\textit{C'est pourquoi, je tiens à remercier ici l'ensemble des développeurs libres qui comme Jimmy Wales, Fondateur de Wikipedia, partagent non seulement leur savoir, mais leur travail. Je tiens à le souligner.}

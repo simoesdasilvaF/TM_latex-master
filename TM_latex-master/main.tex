@@ -1,0 +1,180 @@
+                  %%%%%%%%%%%%%%% Modèle de Travail de Maturité %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% On peut obtenir le document final de deux manières :
+
+% Classiquement, avec des images eps uniquement pour profiter
+% des avantages du postscript :
+% -----------
+% première compilation avec LaTeX
+% seconde compilation avec LaTeX
+% création de l'index : makeindex
+% création de la biblographie : bibtex
+% troisième compilation avec LaTeX
+% éventuellement quatrième compilation avec LaTeX
+% transformer le dvi e ps puis en PDF
+% -----------
+
+% Autre manière plus rapide, permettant d'obtenir un pdf avec des liens actifs
+% et gérant les images jpg, png, ... mais, de moins bonne qualité pour les
+% figures
+% -----------
+% deux compilations pdflatex
+% création de l'index : makeindex
+% création de la biblographie : bibtex
+% troisième compilation avec pdflatex
+% éventuellement quatrième compilation avec LaTeX
+% -----------
+
+% Pour plus d'informations sur la phase de compilation et les différentes
+% configurations possible sous TexMaker, voyez la documentation dans le
+% répertoire du même nom.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ATTENTION l'option draft est activée par défaut. Pour le document final, commentez la ligne
+% suivante et décommentez celle du dessous pour retirer l'option draft.
+% Plusieurs éléments de présentation aidant à la rédaction seront alors retirés (filigrane, notes de todo, repère de lignes trop longues, ...)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\documentclass[12pt,a4paper,francais,titlepage,twoside,openright,draft]{book}
+\documentclass[12pt,a4paper,francais,titlepage,twoside,openright]{book}
+
+% Pour mémoire, ne pas en tenir compte
+%\documentclass[12pt,a4paper,idxtotoc,bibtotoc,francais,titlepage,twoside,openright,draft]{book}
+
+%------ DÉBUT DU PRÉAMBULE --------
+
+% Toutes les commandes techniques sont définies dans le fichier TM.sty
+% Normalement, vous n'avez pas à y toucher
+% Mais, il doit être présent
+\usepackage{TM}
+
+% Initialisation des paramètres du travail de maturité
+% Il faut impérativement remplir ce fichier, c'est-à-dire le fichier config.tex
+\include{config}
+
+% Les ressources web sont définies dans une bibliographie à part.
+% Il faut donc une nouvelle commande de citation des sites web.
+\titredelabiblioweb
+
+% ***** FIN DU PRÉAMBULE *****
+
+% ***** DÉBUT DU DOCUMENT *****
+% ----- DÉBUT DE LA PRÉFACE -----
+\begin{document}
+\frontmatter
+% Choix de la langue
+\choixdelalangue
+
+% Permet l'inclusion d'un indication de version provisoire
+\draftoufinal
+
+% Inclusion de la page de titre.
+\include{pagesspeciales/pagetitre}
+
+% Une citation ou pensée,
+\pensee
+
+% Préambule/dédicace/remerciements
+\dedicace
+
+% Pour insérer un résumé
+\resume
+
+\begin{spacing}{1.2}  % Environment pour des espaces interlignes de 1.2 pour le contenu et les listes
+
+% Table des matières
+% Définition du nom de la table des matières
+\tableofcontents    % table des matières (fichier .toc)
+% Pour changer le titre
+%\renewcommand{\contentsname}{Table des matières}
+
+% Liste des figures
+\listefig
+
+% Liste des tables
+\listetbl
+
+% Correction d'un petit bug de listing
+\corrbug
+
+% Liste des codes
+\listelst
+
+\end{spacing}  % Environment pour des espaces interlignes de 1.2 pour le contenu et les listes
+
+% ----- FIN DE LA PRÉFACE -----
+
+% ----- DÉBUT DU CORPS DU DOCUMENT -----
+\mainmatter
+\addtolength{\parskip}{0.25\baselineskip} % espace inter-paragraphe
+
+\leschapitres
+
+\include{chapitres/conclusion}
+
+% ----- DÉBUT DES ANNEXES -----
+\appendix
+
+% Si nécessaire, les annexes sont placées ici.
+\annexes
+
+% ----- FIN DES ANNEXES -----
+
+%\pagenumbering{arabic}
+
+% ----- FIN DU CORPS DU DOCUMENT -----
+\backmatter
+
+\pagestyle{laposteface}
+
+% Éventuelles notes de fin de document
+\notesdefin
+
+% Liste des acronymes.
+
+\acronyme
+
+% Ici est incluse la licence du travail. C'est la GFDL.
+\licence
+
+% Site officiel pour votre travail.
+\site
+
+% CDROM de votre travail.
+\cdrom
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Pour avoir toutes les références de vos fichiers bibtex dans la bibliographie, vous pouvez décommenter les lignes suivantes.
+% Autrement, seules les références cités apparaîtrons dans la bibliographie.
+%\nocite{*}
+%\nociteweb{*}
+
+% Ici se trouve la bibliographie, en style alpha.
+% Le titre de la bibliographie peut éventuellement être changé avec la première commande ci-dessous.
+%\renewcommand{\bibname}{Bibliographie}
+\bibliographystyle{alpha}
+\bibliography{mainbib}
+
+% Ici se trouvent les ressources web, en style plain.
+\bibliographystyleweb{plain}
+\bibliographyweb{webbib}
+\cleartooddpage
+
+% Ici se trouvent les crédits photographiques
+\listecredits
+
+% Si nécessaire, l'index est placé ici.
+\lindex
+
+\pagestyle{videavecpage}
+\newpage
+\strut% ou ~ ou \mbox{} ou \null
+\newpage
+
+\pagestyle{videsanspage}
+\newpage
+\strut% ou ~ ou \mbox{} ou \null
+\newpage
+
+\end{document}
+% ***** FIN DU DOCUMENT *****

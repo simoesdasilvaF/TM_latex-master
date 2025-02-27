@@ -1,0 +1,40 @@
+%\chapter{Structure\index{structure} et compilation\index{compilation}}\label{suite}
+Sans revenir sur le fonctionnement de \LaTeX, rappelons qu'il est nécessaire de passer par une étape de compilation pour obtenir le document final. Cette compilation\index{compilation} nécessite l'utilisation d'un grand nombre de fichiers qui sont organisés selon une structure bien précise.
+
+%\section{Structure de fichiers}
+
+%\subsection{Description}
+Pour s'y retrouver dans la multitude des fichiers qui peuplent le répertoire dans lequel se trouve le modèle de travail de maturité, il faut partir de la racine du projet, c'est à dire le répertoire dans lequel se trouve le fichier principal nommé : \verb|main.tex|\index{main.tex}. À l'intérieur de celui-ci se trouvent quatre répertoires particuliers : \verb|pagesspeciales|\index{répertoire!pagesspeciales}, \verb|chapitres|\index{répertoire!chapitres}, \verb|images|\index{répertoire!images} et \verb|code_source|\index{répertoire!code\_source} et plusieurs fichiers : toute une série de ceux-ci portent le nom \verb|main.xxx|\index{fichiers!main}, une autre le nom \verb|config.xxx|\index{fichiers!config}, une autre encore \verb|web.xxx|\index{fichiers!web}, certains portent le nom \verb|TM.sty|\index{fichiers!TM} et \verb|fancyheadings.sty|\index{fichiers!fancyheadings}, \verb|multibib.sty|\index{fichiers!multibib} et \verb|licence.txt|\index{fichiers!licence}.
+
+Les \verb|main.xxx|\index{fichiers!main} sont issus de la compilation. À part \verb|main.tex|, il ne faut pas les toucher. Même \verb|main.tex|\index{main.tex} ne devrait pas être modifié, sauf rare exception comme celle permettant d'imposer des citations\index{citation} de références\index{référence} qui ne sont pas dans le texte (voir les paragraphe \ref{nocite} et \ref{nociteweb}, respectivement pages \pageref{nocite} et \pageref{nociteweb}). On ne doit que le compiler\index{compiler}.
+
+Parmi les fichiers \verb|config.xxx|\index{fichiers!config}, seul le fichier \verb|config.tex|\index{config.tex} doit impérativement être lu et correctement remplis pour définir les réglages à faire pour son propre travail de maturité. Les réglages par défaut ne sont pas suffisant. Les principaux éléments de la page de titre\index{page de titre}, par exemple, doivent être spécifiés. Comme par défaut, l'ensemble des pages particulières est activé, il est probable qu'il faille en désactiver certaines. Ce fichier est donc particulièrement expliqué dans cette documentation elle-même, mais aussi à travers les commentaires présents dans le fichier.
+
+Parmi les fichiers \verb|web.xxx|\index{fichiers!web} qui servent à la bibliographie des pages web, le fichier permettant de répertorier les différents sites web est \verb|webbib.bib|\index{webbib.bib}. C'est celui-ci qu'il faut remplir des références web de votre travail. De la même manière, c'est le fichier \verb|mainbib.bib|\index{mainbib.bib} qu'il faut remplir des références de votre travail pour la bibliographie\index{bibliographie} classique.
+
+L'élément central du modèle de travail de maturité est \verb|TM.sty|\index{fichiers!TM}\index{TM.sty}. C'est le fichier de macros qui permet son bon fonctionnement. \emph{Il ne faut donc surtout pas y toucher}.
+
+Finalement, les fichiers \verb|fancyheadings.sty|\index{fichiers!fancyheadings} et \verb|multibib.sty|\index{fichiers!multibib} sont nécessaires pour les entêtes et les deux bibliographies. Ce sont des modules chargés par \LaTeX{} et il ne faut pas les toucher.
+
+Le fichier \verb|licence.tex|\index{fichiers!licence}\index{licence.tex} spécifie quant à lui le texte de la licence du modèle et/ou du travail de maturité.
+
+\bigskip
+Dans le répertoire \verb|pagesspeciales|\index{répertoire!pagesspeciales}, se trouvent les fichiers nécessaires à la définition des pages spéciales comme la page de titre (\verb|pagetitre.tex|)\index{pagetitre.tex} dont le fichier ne devrait pas être modifié autrement qu'à partir du fichier de configuration, la page de citation et dédicaces (\verb|citations.tex|)\index{citations.tex}, la page de remerciements (\verb|remerciements.tex|)\index{remerciements.tex}, la page du résumé (\verb|resume.tex|)\index{resume.tex}, la page des acronymes (\verb|acronymes.tex|)\index{acronymes.tex} et la page décrivant le site web éventuellement associé au travail de maturité (\verb|website.tex|)\index{website.tex}.
+
+Dans le répertoire \verb|chapitres|\index{répertoire!chapitres} se trouvent les différents chapitres du travail de maturité, ainsi que sa conclusion. C'est principalement dans ceux-ci qu'il faut travailler.
+
+Dans le répertoire \verb|images|\index{répertoire!images} se trouvent les images du travail de maturité. Elles doivent figurer chacune sous deux types : .eps\index{extension!eps} et .jpg\index{extention!jpg} ou .png\index{extension!png}. Généralement, on y met une version de type .eps et une autre de type .jpg de chaque image.
+
+Finalement, dans le répertoire \verb|code_source|\index{répertoire!code\_source} se trouvent éventuellement des codes sources informatiques qui vont figurer dans le travail de maturité sous la forme de fichiers à inclure.\todo[line]{Préciser le mode d'inclusion.}
+
+%\subsection{Pratiquement}
+Le modèle de travail de maturité se présente sous le forme d'un répertoire zippé. Il faut donc tout d'abord le décompresser et lire le fichier \verb|Lisez-moi.txt|\index{fichier!Lisez-moi.txt} ou \verb|readme.md|\index{fichier!readme.md} qui va vous diriger vers le présent texte qu'il faut lire.
+
+Puis, il faut tenter une première compilation\index{compilation} du fichier \verb|main.tex|\index{main.tex} pour détecter des erreurs dues à l'éventuelle absence de certains modules\index{module} (packages) nécessaires et le cas échéant, il faut les installer et refaire la compilation jusqu'à ce qu'il n'y ait plus d'erreurs.
+
+Alors seulement, le travail à proprement parlé peut commencer.
+
+%\section{Compilation}
+Pour compiler\index{compiler} le document, il n'est théoriquement pas nécessaire de faire appel à un éditeur latex dédié. On peut tout faire à l'aide d'une bonne vieille console ou d'un simple éditeur de texte. Mais, il est évidemment plus pratique d'avoir recours à un éditeur dédié à \LaTeX{} comme Texmaker\index{Texmaker}.
+
+Comme déjà dit, le document à compiler est \verb|main.tex|\index{main.tex}. À la fin, il est aussi nécessaire de préparer cette compilation pour permettre aux bibliographies\index{bibliographie} d'être correctement intégrées dans le document. Pour cela, il faut réaliser une première compilation, puis dans la console associée à Texmaker\index{Texmaker}, exécuter successivement \lstinline|bibtex main| et \lstinline|bibtex web|. Cela permettra de créer les fichiers nécessaires pour les bibliographies. Enfin, il faut recompiler une ou deux fois le document principal\endnote{Test de note de fin : \dots{} et tout finira bien !}.

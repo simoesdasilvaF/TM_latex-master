@@ -1,0 +1,65 @@
+\chapter{Introduction}
+
+\section{Motivations et Objectifs}
+\subsection{Motivations}
+Désormais l'utilisation de \LaTeX{} au lycée fait partie des connaissances que doivent acquérir les élèves qui on choisi des options techniques. De telles connaissances sont absolument nécessaire pour ces élèves. Mais en considérant le résultat fourni, d'autres élèves font régulièrement la demande pour pouvoir utiliser \LaTeX{} pour leur travail de fin d'étude, nommé travail de maturité en Suisse. Or, leur familiarité avec \LaTeX{} est parfois trop peu importante pour que ce travail puisse se faire sans un véritable soutient des enseignants.
+
+Force est de constater que la majorité des enseignants en est incapable. Et ce n'est pas dû à \LaTeX{} uniquement. Avec d'autres traitement de texte plus connus, c'est souvent la même chose. 
+
+\subsection{Objectifs}
+Une solution à ce problème est constitué par le présent travail. Il s'agit d'un modèle de travail de maturité, simplement configurable, permettant de mettre à disposition des élèves ayant des connaissances de base en \LaTeX tous les outils nécessaires pour leur travail.
+
+\medskip
+L'article \citeweb{wCHROMEGear} intitulé ``Chrome 12 arrête son support à Google Gears'' a permis un choix décisif en faveur de la seconde solution.
+
+\section{Organisation}
+Pour obtenir la plus grande simplicité possible, le modèle a été conçu autour de trois fichiers.
+\begin{enumerate}
+ \item main.tex
+ \item TM.sty
+ \item config.tex
+\end{enumerate}
+Le premier est simplement destiné à la compilation. Il contient la structure générale du travail. IL ne doit pas être modifié. Le second règle tous les détails techniques. Il se compose essentiellement de code \LaTeX complexe et ne doit pas être modifié. Le dernier est le fichier de configuration du travail. C'est lui qui donne accès au divers outils mis à disposition, tels que titre, préface, nombre de chapitres, postface, index, etc.
+
+\section{Notations et Conventions}
+
+\subsection{Documentation}
+
+
+\section{Rédaction}
+
+
+
+
+\begin{comment}
+\begin{itemize}
+
+\item Formatting conventions:
+\begin{itemize}
+   \item \textbf{Bold} and \textit{italic} are used for emphasis and to signify the first use of a term.
+
+   \item \url{Sans Serif} is used for web addresses.
+
+   \item \src{Code} is used in all Java code and generally for anything that would be typed literally
+   when programming, including keywords, constants, method names, and variables, class names, and interface names.
+\end{itemize}
+
+\item The present report is divided in Chapters. Chapters are broken down into Sections.
+Where necessary, sections are further broken down into Subsections, and Subsections may
+contain some Paragraphs.
+
+\item \afigurelabel s, \atablelabel s and \alistinglabel s are numbered inside a chapter. For example, a reference
+to
+\afigurelabel~\textit{j} of Chapter \textit{i} will be noted \textit{\afigurelabel~i.j}.
+
+\item As far as gender is concerned, I systematically select the feminine when possible.
+
+\item Source code is desplayed as follows:
+\end{itemize}
+
+\begin{lstlisting} 
+Matrix3f rotMat = new Matrix3f();
+rotMat.fromAngleNormalAxis( FastMath.DEG_TO_RAD * 45.0f, new Vector3f( 1.0f, 0.0f, 0.0f));
+box.setLocalRotation( rotMat );
+\end{lstlisting}
+\end{comment}

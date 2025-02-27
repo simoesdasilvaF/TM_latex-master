@@ -1,0 +1,376 @@
+%\chapter{Les outils spécifiques}\label{outils_specifiques}\index{outils spécifiques}
+
+%\section{Le texte}
+
+%\subsection{Généralités}
+%Il n'est pas question de faire un cours sur \LaTeX. Vous pouvez trouver avec \cite{Mittelbach}, \cite{Desgraupes} ou \cite{Rolland} des livres de référence de très bon niveau et avec \citeweb{wEdTM}, \citeweb{wToutLatex} ou \citeweb{wUneCourteIntro} des sites fournissant des ouvrages en PDF qui vous permettrons d'approfondir simplement le sujet. N'oubliez pas non plus l'aide que peuvent vous fournir vos professeurs.
+
+\smallskip
+%On se contentera donc de rappeler ici quelques règles de base qui permettrons à chacun de s'en sortir sans trop de difficultés.
+
+\smallskip
+%L'utilisation de \LaTeX{} passe par celle d'un éditeur dédié\index{éditeur dédié} comme \emph{Texmaker}\index{Texmaker}. On recommande celui-ci car il est libre, gratuit et multiplateforme. Nous ne détaillerons pas son installation. En cas de problèmes, contactez vos professeurs ou une aide en ligne.
+
+\smallskip
+%Pratiquement, dans Texmaker, l'édition se fait sans formatage particulier. Notamment, les retours à la ligne sont gérés automatiquement par l'éditeur. Par contre, les sauts de paragraphes ne correspondent pas dans l'éditeur à de simples retours à la ligne. L'usage courant est de les indiquer par une simple ligne vide\index{ligne vide}. Cependant, dans certains cas très particuliers, il est nécessaire d'avoir recours à une double contre-oblique\index{double contre-oblique}\index{double back-slash} \lstinline!\\!. Mais généralement, il ne faut pas l'utiliser.
+
+%Pour obtenir des espaces particulier entre certains parragraphes, trois commandes sont à disposition :
+%\begin{description}
+%\item[Petit espace\index{espace petit}] \lstinline!\smallskip! qui permet un espace entre les paragraphes concernés légèrement plus grand que celui par défaut.
+%\item[Moyen espace\index{espace moyen}] \lstinline!\medskip! qui donne un espace légèrement plus grand que le précédent et
+%\item[Grand espace\index{espace grand}] \lstinline!\bigskip! qui donne un espace encore plus grand, mais qui reste raisonnable.
+%\end{description}
+
+%Pour des espacements encore plus grand voyez la littérature.
+
+%Rappelons que le réglage de l'indentation de première ligne\index{indentation de première ligne} se fait dans le fichier de configuration du travail de maturité (voir chapitre \ref{chapter:configuration}).
+
+%\medskip
+%La mise en évidence de certains mots dans le texte ne doit surtout pas se faire par une augmentation de la graisse (mise en gras\index{gras}). Une telle technique est réservée aux cas particuliers où il est nécessaire de faire apparaître très fortement certains termes. Elle ne doit être utilisée qu'exceptionnellement.
+
+%Deux commandes servent généralement à la mise en évidence\index{mise en évidence}.
+%\begin{description}
+% \item[L'italique\index{italique}] obtenu par la commande \lstinline!\emph{mot}! et cela produit ceci : \emph{mot}.
+% \item[Les guillemets\index{guillemets}] obtenus suivant les cas de deux manières différentes. Pour les guillemets anglais\index{guillemets!anglais} la commande est \lstinline!\squote{mot}! et cela produit ceci : \squote{mot}.
+
+% Pour les guillemets français\index{guillemets!français}, en raison de leur dissymétrie, il faut utiliser les commandes \lstinline!\og! et \lstinline!\fg! en encadrant le mot \lstinline!\og mot\fg! et cela donne : \og mot\fg.
+%\end{description}
+
+%\subsection{Légendes}
+%Une précision importante pour la suite : le référencement\index{référencement} des légendes\index{légende} dans les pages spéciales contenant la liste des éléments référencés n'est mis-à-jour qu'après \emph{deux} compilations. Souvenez-vous en bien !
+
+%\subsection{Environnements}
+%L'environnement principal nécessaire dans pratiquement tout travail de maturité est celui correspondant aux citations\index{citation}. Dans ce modèle, une fois pour toute, un environnement de citation\index{citation!environnement} a été défini très clairement. Chaque citation est référencée à l'aide d'un compteur, elle est mise en évidence et son auteur\index{auteur} est mentionné en fin de citation.
+
+%L'environnement permettant cela est donné par le code \listingref{listing:citation} qui donne le résultat constituant la citation \ref{wales}, page \pageref{wales}.\todo[line]{Rendre obligatoire l'argument de référence.}
+
+%\begin{lstlisting}[float,caption={L'environnement de citation},label={listing:citation}]
+%\begin{Citation}{Jimmy Wales. Fondateur de Wikipedia.}\label{wales}
+% Imaginez un monde dans lequel chaque personne pourrait partager librement l'ensemble des connaissances humaines.
+%\end{Citation}
+%\end{lstlisting}
+
+%\begin{Citation}{Jimmy Wales. Fondateur de Wikipedia.\endnote{Exemple de référence référence précise dans une note de pied de page pour la citation de Jimmy Wales, page \pageref{wales}.}}\label{wales}
+ %Imaginez un monde dans lequel chaque personne pourrait partager librement l'ensemble des connaissances humaines.
+%\end{Citation}
+
+%Relevez que cet environnement dispose d'un argument \og obligatoire\fg{} constituant sa référence\index{référence} et d'une commande \lstinline!\label{}! permettant de s'y référer dans le texte à l'aide de \lstinline!\ref{}!. Pour préciser la référence, on peut utiliser une note de fin de document\index{note de fin} \lstinline!\endnote{}! \footnote{Pour l'instant les références de citations\index{référence!citation} ne sont pas placées sur une page qui leur serait proprement consacrées, car elle sont souvent peu nombreuses. Mais si cela s'avérait nécessaire pour vous, n'hésitez pas à me contacter pour que je modifie le modèle dans ce sens.} comme cela est fait dans la citation \ref{wales}. Mais, attention, il n'est pas possible d'utiliser une note de pied de page\index{note de pied de page} telle que celle-ci\footnote{Ces notes sont réservées à des éléments de précisions autres que des références.} pour préciser la référence dans l'argument de la commande de citation.
+
+%\section{Figures\index{figure}}
+%Quatre commandes pour placer des figures sont prévues. Elles permettent de mettre simplement des figures de taille très petite\index{figure!très petite} (\lstinline|\tmfigureT|), de taille petite\index{figure!petite} (\lstinline|\tmfigureS|), de taille normale\index{figure!normale} (\lstinline|\tmfigureN|) et de grande taille\index{figure!grande} (\lstinline|\tmfigureB|). Chaque commande prend quatre arguments :
+%\begin{enumerate}
+ %\item le nom de la figure sans extension,
+ %\item sa légende\index{légende},
+ %\item une étiquette qui permet d'en faire la référence dans le texte et
+ %\item un crédit photographique\index{crédit photographique} \og obligatoire\fg{} qui va apparaître en fin de document. Pour mettre une url, il faut utiliser la commande protégée : \lstinline|\protect\url{...}|.
+%\end{enumerate}
+%Ainsi, la commande de placement de chaque figure est donné par le code \listingref{listing:figure}.
+
+%\begin{lstlisting}[float,caption={Les commandes de placement des figures},label={listing:figure}]
+%\tmfigureB{NomFigureSansExtension}{Legende}{fig:votreLabel1}{credit}	% Taille grande
+%\tmfigureN{NomFigureSansExtension}{Legende}{fig:votreLabel2}{credit}	% Taille normale
+%\tmfigureS{NomFigureSansExtension}{Legende}{fig:votreLabel3}{credit}	% Taille petite
+%\tmfigureT{NomFigureSansExtension}{Legende}{fig:votreLabel4}{credit}	% Taille tres petite
+%\end{lstlisting}
+
+%Pour placer une référence\index{référence} dans le texte, il suffit ensuite de mettre la commande donnée par le code \listingref{listing:reffigure} là où on souhaite son numéro.
+
+%\begin{lstlisting}[float,caption={La commande de référence à une figure},label={listing:reffigure}]
+% \figref{fig:votreLabelno}
+%\end{lstlisting}
+
+%Le résultat obtenu est présenté aux figures \figref{fig:figgrandetaille}, page \pageref{fig:figgrandetaille}, \figref{fig:figtaillenormale}, page \pageref{fig:figtaillenormale}, \figref{fig:figpetitetaille} et \figref{fig:figtrespetitetaille}, page \pageref{fig:figtrespetitetaille}.
+
+%\tmfigureB{cdrom}{Une figure de grande taille}{fig:figgrandetaille}{Crédit figure grande taille \protect\url{http://www.debian.org}}
+%\tmfigureN{cdrom}{Une figure de taille normale}{fig:figtaillenormale}{Crédit figure taille normale \protect\url{http://www.debian.org}}	% Taille normale
+%\tmfigureS{cdrom}{Une figure de petite taille}{fig:figpetitetaille}{Crédit figure petite taille \protect\url{http://www.debian.org}}	% Taille petite
+%\tmfigureT{cdrom}{Une figure de très petite taille}{fig:figtrespetitetaille}{Crédit figure très petite taille \protect\url{http://www.debian.org}}	% Taille tres petite
+
+%Il reste bien entendu possible de déclarer des figures flottantes\index{figure!flottante} de manière classique grâce au code du listing \ref{listing:figureclassique}.
+
+%\begin{lstlisting}[float,caption={Commande classique de placement d'une figure},label={listing:figureclassique}]
+%\begin{figure}
+ %\centering
+ %\includegraphics[scale=1]{...}
+ %\caption{\label{...}...}
+ %\credit{... \protect\url{...}}
+%\end{figure}
+%\end{lstlisting}
+
+%Cela permet un réglage plus fin de la taille de la figure.
+%
+%Un autre environnement de placement des figures est permis par le module \verb|subfig|\index{subfig}. Il permet de placer plusieurs figures\index{figure!plusieurs} l'une à côté de l'autre avec pour chacune une sous-légende\index{figure!sous-légende} et pour les deux une légende. Le résultat est donné à la figure \ref{fig:lp}, page \pageref{fig:lp}, avec deux sous-figures \ref{fig:sl1} et \ref{fig:sl2}, sous-légendées.
+
+%Le code nécessaire pour placer ces figures est celui du listing \ref{listing:subfig}. Mais la documentation du module \verb|subfig|\index{module!subfig} vous en dira plus sur le placement d'un plus grand nombre de sous-figures.
+
+%\begin{figure}[t]
+%\centering
+%\subfloat[Première sous-légende\label{fig:sl1}]{\includegraphics[width=3cm]{cdrom}}\qquad
+%\subfloat[Seconde sous-légende\label{fig:sl2}]{\includegraphics[width=3cm]{cdrom}}
+%\caption{Légende principale d'une multi-figure}\label{fig:lp}\credit{Crédit figure multiple}
+%\end{figure}
+
+%\begin{lstlisting}[float,caption={Commande de placement de multiples figures},label={listing:subfig}]
+%5\begin{figure}[t]
+%\centering
+%\subfloat[Première sous-légende\label{fig:sl1}]{\includegraphics[width=3cm]{cdrom}}\qquad
+%\subfloat[Seconde sous-légende\label{fig:sl2}]{\includegraphics[width=3cm]{cdrom}}
+%\caption{Légende principale}\label{fig:lp}\credit{Crédit figure multiple}
+%\end{figure}
+%\end{lstlisting}
+
+%Remarquez la commande \lstinline|\credit{...}| permettant de référencer la figure multiple dans la liste des figures.
+
+%\medskip
+%Par ailleurs, si vous désirez changer l'intitulé de la référence, en l'occurence \og Figure \fg{}, par \og Graphique \fg{} par exemple, décommentez la deuxième ligne du listing \ref{listing:intituleref} se trouvant dans le fichier \verb|config.tex|.
+
+%\medskip
+%Remarquez enfin, qu'il est possible d'activer ou de désactiver l'affichage d'une page présentant une liste des figures\index{liste des figures} avec une référence aux pages où elles se trouvent. Pour cela, il suffit de décommenter la commande \lstinline|\unelistefig| du fichier de configuration \verb|config.tex|.
+
+%Qu'il est possible d'activer ou de désactiver l'affichage de la page présentant la liste des crédits photographiques\index{liste des crédits photographiques} avec une référence aux pages où ils se trouvent. Pour cela, il suffit de décommenter la commande \lstinline|\unelistecredits| du fichier de configuration \verb|config.tex|.
+
+%\section{Tableaux\index{tableau}}
+%Les environnements permettant de réaliser des tableaux sont nombreux. Il n'est pas envisageable ici de les présenter tous. On se contentera donc de quelques exemples d'une complexité modeste. À vous de parcourir la littérature pour apprendre à composer en \LaTeX{} des tableaux à votre goût. La structure générale est celle du tableau ci-dessous, composé par la partie du code \ref{listing:tableau} à l'intérieur de l'environnement tabular. L'absence de \verb|centering| se traduit par un tableau au fer à gauche.
+
+%\bigskip
+%\begin{tabular}{|c|c|}
+%\hline 
+%élément 1 & élément 2 \\ 
+%\hline 
+%élément 3 & élément 4 \\ 
+%\hline 
+%\end{tabular}
+%\smallskip
+
+%Évidemment, un tel tableau est très incomplet. Il y manque une structure de flottant permettant de laisser \LaTeX{} réaliser son placement avec un titre et une référence. De plus sans cette structure, il ne sera pas référencé dans la table des tableaux.
+
+%Pour ce faire, il faut donc y ajouter l'environnement de \emph{table} encadrant celui de \emph{tabular}, comme présenté dans le code \ref{listing:tableau}.
+
+%\begin{lstlisting}[float,caption={L'environnement pour placer un tableau},label={listing:tableau}]
+%\begin{table}
+%\centering
+% \begin{tabular}{|c|c|}
+%  \hline 
+%  élément 1 & élément 2 \\ 
+%  \hline 
+%  élément 3 & élément 4 \\ 
+%  \hline 
+% \end{tabular}
+% \caption{Un tablau d'éléments}
+%\end{table}
+%\end{lstlisting}
+
+%\begin{table}
+%\centering
+%\begin{tabular}{|c|c|}
+%\hline 
+%élément 1 & élément 2 \\ 
+%\hline 
+%élément 3 & élément 4 \\ 
+%\hline 
+%\end{tabular}
+%\caption{Un tableau d'éléments}\label{tab:tableauSimple}
+%\end{table}
+
+%Cela rend le tableau flottant \ref{tab:tableauSimple}, permet son placement de manière adéquate par \LaTeX{} et l'inscrit (éventuellement après deux compilations successives) dans la liste des tableaux.
+
+%\medskip
+%Si vous désirez changer l'intitulé de la référence, en l'occurence \og Table \fg{}, par \og Tableau \fg{} par exemple, décommentez la dernière ligne du listing \ref{listing:intituleref} se trouvant dans le fichier \verb|config.tex|.
+
+%\begin{lstlisting}[float,caption={Changer l'intitulé de la référence},label={listing:intituleref}]
+% Pour changer le nom des titre des références des légendes décommentez à souhait
+%\addto\captionsfrench{\def\figurename{Graphique}}
+%\addto\captionsfrench{\def\tablename{Tableau}}
+%\end{lstlisting}
+
+%Évidemment des tableaux bien plus complexes peuvent être produits pas \LaTeX.
+
+%\medskip
+%On pense généralement qu'il est bien plus facile de produire des tableaux avec un tableur tel LibreOffice calc ou autre équivalent propriétaire. Pourtant, si on comprend que les ordinateurs peuvent aujourd'hui fournir rapidement des mesures par millier ou centaines de millier, on peut imaginer la difficulté à les introduire dans un tableur. Cela ne se fait évidemment pas. L'acquisition de ces mesures se fait dans des fichiers textes, analysés par des logiciels travaillant à partir de ceux-ci pour fournir de petits tableaux les résumant. Leur représentation par \LaTeX{} est alors parfaitement réalisable et peut même se faire automatiquement. Sans les utiliser ici, il faut souligner la pertinence des outils \LaTeX{} dans ce cadre.
+
+%Une autre manière de gérer les tableaux, moins efficace, mais plus simple, consiste à les importer depuis un tableur. Pour cela, il est nécessaire d'utiliser depuis ce dernier un filtre d'exportation pour \LaTeX. L'un des tableur libre et gratuit beaucoup utilisé au lycée dans les branches scientifiques est \emph{Gnumeric}. Nous allons le prendre en exemple pour réaliser une exportation d'un tableau un peu plus complexe que celui ci-dessus.
+
+%\tmfigureN{gnumeric}{Tableau dans Gnumeric}{fig:gnumeric}{GFDL}
+
+%La figure \ref{fig:gnumeric}, page \pageref{fig:gnumeric}, montre le tableau dans \emph{Gnumeric} et le développement du menu permettant l'export de celui-ci sous forme de \emph{Fragment de table LaTex 2e (*.tex)} à sélectionner dans la fenêtre qui s'ouvre sous \emph{Type de fichier} en bas de celle-ci. Puis, il faut l'enregistrer dans le répertoire images du modèle de TM. Ouvrez-le dans \emph{Texmaker}. Suivant les versions du filtre d'exportation, il se peut que \LaTeX{} vous dise ne pouvoir l'ouvrir avec l'encodage UTF8. Choisissez néanmoins cet encodage, corrigez tous les caractères mal encodés et réenregistrez-le.
+
+%Pour l'importer dans \LaTeX, on peut alors utiliser la commande \verb|input{}| dans un environnement de tableau, comme présenté dans le code \ref{listing:tableauGnumeric}
+
+%\begin{lstlisting}[float,caption={L'environnement pour importer un tableau Gnumeric},label={listing:tableauGnumeric}]
+%\begin{table}
+%\centering
+% \begin{tabular}{|c|c|c|c|c|}
+%  \input{images/tableauUTF8.tex}
+ %\end{tabular}
+ %\caption{Un tablau plus complexe}\label{tab:tableauGnumeric}
+%\end{table}
+%\end{lstlisting}
+
+%\begin{table}
+%\centering
+%\begin{tabular}{|c|c|c|c|c|}
+%\input{images/tableauUTF8.tex}
+%\end{tabular}
+%\caption{Un tableau plus complexe}\label{tab:tableauGnumeric}
+%\end{table}
+
+%Comme on le voit dans la table \ref{tab:tableauGnumeric}, il manque plusieurs bordures, car l'export du tableau Gnumeric en \LaTeX{} se limite aux données. C'est à vous de réaliser la mise en forme. Cela est déjà partiellement réalisé dans le code \ref{listing:tableauGnumeric} par l'adoption de cinq colonnes centrées avec des bordures verticales (|c|c|c|c|c|). Pour les bordures horizontales, il faut les ajouter dans le code exporté par \emph{Gnumeric} avec des \verb|\hline|, utiliser la commande \verb|\multicolumn| comme décrite dans le listing \ref{listing:tableauGnumericFinal} et ne pas utiliser \verb|\input| qui n'importe pas correctement \verb|\hline| et \verb|\multicolumn|. Il faut donc simplement copier le code fourni par \emph{Gnumeric} dans l'environnement \verb|tabular|. Le résultat est donné dans la table \ref{tab:tableauGnumericFinal}.
+
+%\begin{lstlisting}[float,caption={Un tableau plus complexe},label={listing:tableauGnumericFinal}]
+%\begin{table}
+%\centering
+%\begin{tabular}{|c|c|c|c||c|}
+%\hline
+%\multicolumn{5}{|c|}{Grandeurs} \\ \hline
+%\multicolumn{4}{|c||}{brutes} &dérivées\\ \hline
+%x	&I(x)	&t	&I(t)	&a\\ \hline
+%cm	&cm	&s	&s	&cm/s$^2$\\ \hline\hline
+%10	&0.5	&0.143	&0.002	&9.81\\ \hline
+%20	&1.0	&0.202	&0.002	&9.81\\ \hline
+%30	&1.5	&0.247	&0.002	&9.81\\ \hline
+%40	&2.0	&0.286	&0.002	&9.81\\ \hline
+%50	&2.5	&0.319	&0.002	&9.81\\ \hline
+%60	&3.0	&0.350	&0.002	&9.81\\ \hline
+%70	&3.5	&0.378	&0.002	&9.81\\ \hline
+%80	&4.0	&0.404	&0.002	&9.81\\ \hline
+%90	&4.5	&0.428	&0.002	&9.81\\
+%\hline
+%\end{tabular}
+%\caption{Un tableau plus complexe}\label{tab:tableauGnumericFinal}
+%\end{table}
+%\end{lstlisting}
+
+%\begin{table}
+%\centering
+%\begin{tabular}{|c|c|c|c||c|}
+%\hline
+%\multicolumn{5}{|c|}{Grandeurs} \\ \hline
+%\multicolumn{4}{|c||}{brutes} &dérivées\\ \hline
+%x	&I(x)	&t	&I(t)	&a\\ \hline
+%cm	&cm	&s	&s	&cm/s$^2$\\ \hline\hline
+%10	&0.5	&0.143	&0.002	&9.81\\ \hline
+%20	&1.0	&0.202	&0.002	&9.81\\ \hline
+%30	&1.5	&0.247	&0.002	&9.81\\ \hline
+%40	&2.0	&0.286	&0.002	&9.81\\ \hline
+%50	&2.5	&0.319	&0.002	&9.81\\ \hline
+%60	&3.0	&0.350	&0.002	&9.81\\ \hline
+%70	&3.5	&0.378	&0.002	&9.81\\ \hline
+%80	&4.0	&0.404	&0.002	&9.81\\ \hline
+%590	&4.5	&0.428	&0.002	&9.81\\
+%%\end{tabular}
+%\caption{Un tableau plus complexe}\label{tab:tableauGnumericFinal}
+%\end{table}
+
+%\section{Graphiques\index{graphiques}}
+%Les graphiques peuvent être traités de deux manières différentes dans \LaTeX.
+%\begin{enumerate}
+%\item Soit on les réalise préalablement avec un tableur comme \emph{Gnumeric} et on les importe comme une figure après les avoir convertis en eps et/ou jpg. Il faut alors ne pas leur mettre de titre, car c'est l'environnement de figure qui va s'en charger via la commande \verb|\label|.
+%\item Soit on utilise un grapheur spécifique comme \emph{Gnuplot} qui s'intègre complètement à \LaTeX et fournit des graphiques de très haute qualité.
+%\end{enumerate}
+%On laissera au lecteur intéressé le soin de découvrir \emph{Gnuplot}, que nous recommandons, mais dont l'utilisation dépasse le cadre d'un travail de maturité.
+
+%\section{Code source\index{code source}}
+%Pour les travaux de maturité en informatique, il est nécessaire de pouvoir présenter du code. Pour cela on utilise l'environnement \lstinline|lstlisting| (du pacakge listings\index{module!listings}) que le code \ref{listing:gestioncode} présente et qui constitue en lui-même le résultat qu'on obtient.
+
+%\begin{lstlisting}[float,caption={L'environnement pour placer du code},label={listing:gestioncode}]
+ %\begin{lstlisting}[float,caption={Legende du code},label={listing:votreLabel}]
+%  Placez le code ici.
+ %\end{lstlisting } <- sans l'espace !
+%\end{lstlisting}
+
+%\section{Bibliographie}\index{bibliographie}\label{bibliographie}
+%Une bibliographie est absolument nécessaire pour un travail de maturité. Cependant, il ne s'agit généralement pas de bibliographie complexe. C'est pourquoi on se limitera ici à une gestion très simple de la bibliographie via deux fichiers : \verb|mainbib.bib|\index{mainbib.bib} et \verb|webbib.bib|\index{webbib.bib}. Le premier permet de créer une bibliographie traditionnelle faite de livres, articles, \dots{} Le second permet une \squote{bibliographie} de sites web\index{bibliographie!web}. Ces deux types de bibliographies sont volontairement séparées en raison de la difficulté de lecture des url de site web.
+
+%\subsection{Sites web\index{site web}}
+%Commençons par les sites web à référencer. Comme pour la bibliographie traditionnelle qu'on va voir plus loin, deux choses sont nécessaires :
+%\begin{itemize}
+% \item Décrire dans le fichier \verb|webbib.bib|\index{webbib.bib} les caractéristiques de chaque site. Il s'agit de son titre, son url\index{url} et la date de la consultation\index{date de consultation} \emph{obligatoire}. De plus, il faut le lier à une référence\index{référence} qui permettra la citation dans le texte.
+% \item Placer une référence dans le texte pointant sur le site en question.
+%\end{itemize}
+%Pour cela, la structure retenue est celle présentée dans le code \listingref{listing:webbiblio}.
+
+%\begin{lstlisting}[float,caption={La référence à un site web},label={listing:webbiblio}]
+%@MISC{mareference,
+ % title = {{Le titre}},
+%  note = {\biburl{http://www.adresse/a/referencer.html}{12}{janvier}{2006}},
+ %% key = {cle_alphabetique}
+%}
+%\end{lstlisting}
+
+%Remarquez les doubles accolades pour le titre, la commande \lstinline|\biburl{...}| pour l'adresse et le fait que la référence est constituée d'un mot librement choisi, mais unique, sans espace, sans accents et sans caractères particuliers.
+
+%\smallskip
+%Pour placer la référence\index{référence}, il faut utiliser la commande \lstinline|\citeweb{mareference}|. Elle se met directement dans le texte et sera traduite à la compilation\index{compilation} en un numéro permettant de retrouver le site dans la liste des sites web\index{liste des sites web} en fin de document.
+
+%Par exemple, en plaçant la commande \lstinline|\citeweb{wGNUDoc}| dans ce texte, on obtient la référence \citeweb{wGNUDoc} dont le numéro, qui figure dans la liste des sites web à la fin de ce document, réfère au site contenant le texte de la licence libre GFDL.
+
+%\smallskip
+%Attention cependant, la référence ne doit pas être confondue avec la clé (key)\index{clé} qui permet, en l'absence de nom d'auteur, de trier\index{trier} alphabétiquement les références dans la liste des sites web\index{liste des sites web}.
+
+%\smallskip
+%Attention aussi à la procédure permettant de réaliser la ''bibliographie'' des sites web. Elle est issue du module \verb|multibib|\index{module!multibib} qui permet de réaliser les deux bibliographies. Il s'agit tout d'abord de faire appel à la commande :
+%\begin{verbatim}
+% bibtex web
+%\end{verbatim}
+%dans le répertoire principal (où se trouve le fichier \verb|main.tex|). Puis, de recompiler \verb|main.tex| au moins deux fois.
+
+%\smallskip
+%Remarquez enfin, que si aucune référence\index{référence} \lstinline|\citeweb{unereference}| ne se trouve dans le texte, la page de référence des sites web n'appraîtra pas, même si des entrées figurent dans le fichier \verb|webbib.bib|\index{webbib.bib}. Si vous désirez néanmoins faire apparaître toute les références de votre bibliographie, c'est-à-dire celle citées dans votre texte et celles qui ne le sont pas, décommentez à la fin du fichier \apath{main.tex} la ligne \lstinline!%\nocite{*}!. L'étoile signifie tout les éléments non cités. Faites quelques recherches sur cette commande si vous désirez ne faire apparaître que quelques références non citées\index{référence!non citée}.\label{nocite}
+
+
+%\subsection{Bibliographie\index{bibliographie}}
+%Pour la bibliographie traditionnelle, les choses sont assez identiques. Deux choses sont aussi nécessaires :
+%\begin{itemize}
+% \item Décrire dans le fichier \verb|mainbib.bib|\index{mainbib.bib} les caractéristiques de chaque ouvrage. Il s'agit de différents champs qui sont fonction du type d'ouvrage décrit. Des exemples sont donnés et sous la mention bibtex\index{bibtex}, on en trouve d'autres sur le net. De plus, il faut lier chaque ouvrage à une référence qui permettra la citation\index{citation} dans le texte.
+% \item Placer une référence\index{référence} dans le texte pointant sur le site en question.
+%\end{itemize}
+%Pour cela, la structure retenue est celle présentée dans le code \listingref{listing:ouvragebiblio}.
+
+%\begin{lstlisting}[float,caption={La référence à un ouvrage},label={listing:ouvragebiblio}]
+%@Book{Mittelbach,
+%author = {Frank Mittelbach et Michel Goossens},
+%title = {Latex companion},
+%publisher = {Pearson Education},
+%year = {2005},
+%note = {Ouvrage exhaustif. La reference en la matiere.}}
+
+%@Article{GuidonC,
+%author = {Yann Guidon},
+%title = {Plus leger, plus rapide : compactez votre site web},
+%journal = {Linux Magazine France},
+%year = {2011},
+%volume = {144},
+%number = {1 et 2},
+%pages = {78-98},
+%month = {decembre},
+%note = {Article assez complexe.}}
+%\end{lstlisting}
+
+%Ici deux types d'ouvrages sont décrits : un livre\index{livre} et un article\index{article}. À chaque type d'ouvrage correspond une série de champs descriptifs qui lui est propre.
+
+%\smallskip
+%Pour placer la référence, il faut utiliser la commande \lstinline|\cite{Mittelbach}|, par exemple. Elle se met directement dans le texte et sera traduite à la compilation\index{compilation} en un une référence\index{référence} faite des trois premières lettres du nom de l'auteur accolées à l'année de plublication\index{année de publication} et permettant de retrouver l'ouvrage dans la liste des ouvrages\index{liste des ouvrages} en fin de document.
+
+%Par exemple, en plaçant la commande \lstinline|\cite{Mittelbach}| dans ce texte, on obtient \cite{Mittelbach} dont la référence, qui figure dans la liste des ouvrages à la fin de ce document, mène au livre \squote{\LaTeX{} companion}.
+
+%Un argument facultatif de la commande \lstinline!\cite{}! permet de spécifier la ou les pages à prendre en compte. Par exemple, en plaçant \lstinline!\cite[p. 45-64]{Mittelbach}! dans ce texte, on obtient \cite[p. 45-64]{Mittelbach} dont la référence mène toujours au même livre.
+
+%\smallskip
+%Attention à la procédure permettant de réaliser la \og bibliographie\fg{} traditionnelle. Elle est issue du module \verb|multibib|\index{module!multibib} qui permet de réaliser les deux bibliographies. Il s'agit tout d'abord de faire appel à la commande :
+%\begin{verbatim}
+% bibtex main
+%\end{verbatim}
+%dans le répertoire principal (où se trouve le fichier \verb|main.tex|). Puis, de recompiler \verb|main.tex|\index{main.tex} au moins deux fois.
+
+\smallskip
+%Remarquez enfin, que si aucune référence \lstinline|\citeweb{unereference}| ne se trouve dans le texte, la page de référence des ouvrages n'apparaîtra pas, même si des entrées figurent dans le fichier \verb|mainbib.bib|\index{mainbib.bib}. Si vous désirez néanmoins faire apparaître toute les références de votre bibliographie, c'est-à-dire celle citées dans votre texte et celles qui ne le sont pas, décommentez à la fin du fichier \apath{main.tex} la ligne \lstinline!%\nociteweb{*}!. L'étoile signifie tout les éléments non cités. Faites quelques recherches sur cette commande si vous désirez ne faire apparaître que quelques références non citées.\label{nociteweb}
+
+%%%%%%%%%%%%%%%%%%%\section{Index}\index{index}\label{index}
+%Il n'est absolument pas nécessaire de réaliser un index pour un travail de maturité. La possibilité de le faire a néanmoins été maintenue au cas ou cela s'avèrerait nécessaire pour une raison ou une autre.
+
+%La procédure est simple.
+
+%\begin{enumerate}
+%\item Il faut ajouter après chaque terme devant figurer dan l'index (il faut les choisir manuellement, car une procédure automatique indexe beaucoup de termes dans des paragraphes ou ils sont en réalité inutiles pour décrire leur fonction) la commande \lstinline!\index{lemotaindexer}!. On peut aussi mettre plusieurs mots. Pour réaliser un regroupement hiérarchique, on peut utiliser le point d'exclamation ainsi : \lstinline|\index{référence!bibliographique}| et \lstinline|\index{référence!webographique}|. Ainsi, dans l'index, deux sous-entrées pour bibliographique et webographique seront créées.
+%\item Il faut compiler\index{compiler} une première fois le fichier \verb|main.tex|, puis lancer en ligne de commande ou dans le menu outil de Texmaker\index{Texmaker} la commande \lstinline|makeindex| et enfin recompiler une seconde fois.
+%\end{enumerate}

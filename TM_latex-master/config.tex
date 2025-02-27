@@ -1,0 +1,240 @@
+%---------------FICHIER DE CONFIGURATION DU TRAVAIL DE MATURITÉ--------------------------
+% Vous trouverez les instructions de compilation du fichier source principal main.tex
+% dans la documentation se trouvant dans le fichier DocumentationTMlatex.pdf
+
+% Il est indispensable de remplir ce fichier !!!!!!!!!
+
+%----------------Version provisoire---------------------------------------------------------
+
+% Par défaut le modèle est en version provisoire. Un filigrane est placé
+% en haut à gauche de chaque page, les notes de todo en marges sont activées,
+% un rectangle noir se trouve à la fin des lignes trop longues, ...
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Pour la version finale n'oubliez surtout pas de retirer la mention "draft"
+% de la déclaration de documentclass au tout début du fichier main.tex.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%---------------La langue----------------------------------------------------------------
+% Le choix de la langue est très important, car les différents titres de sections vont
+% être traduits automatiquement. Cependant, par la suite vous pourrez toujours en donner
+% vous même une traduction et l'activer à la place de celle par défaut.
+
+\newcommand{\lalangue}{francais}
+%\newcommand{\lalangue}{english}
+%\newcommand{\lalangue}{deutch}
+
+%---------------La page de titre---------------------------------------------------------
+
+% Le titre du travail de maturité.
+\newcommand{\worktitle}{Les Virus}
+% Le sous-titre du travail. S'il n'y a pas de soustitre mettez :
+%\newcommand{\worksubtitle}{}
+% Pour un sous-titre sur plusieurs lignes, mettez un double back slash
+\newcommand{\worksubtitle}{Expérimentations \\
+                           sur plusieurs langages informatiques}
+
+% Texte au milieu de la page de titre.
+\newcommand{\worktype}{Travail de maturité}
+
+% L'auteur.
+\newcommand{\theauthor}{Simoes da Silva Flavio}
+
+% La date de soumission du travail.
+\newcommand{\workdateyear}{2019}
+\newcommand{\workdatemonth}{23 janvier}
+
+% L'indication pour le mentor
+\newcommand{\supervisorslabel}{Mentor}
+% le prénom et le nom du mentor en petites capitales
+\newcommand{\worksupervisors}{
+    Vincent \textsc{Guyot}
+}
+
+%----------------Le pied de page-----------------------------------------------------------
+
+% Nom de l'école (au choix, vous pouvez aussi en mettre d'autres)
+\newcommand{\ecole}{Lycée Blaise-Cendrars}
+
+% Adresse sur une seule ligne (idem)
+%\newcommand{\adressedelecole}{Adresse de votre école}
+
+% Décommentez si vous voulez que les deux images de logos au bas de la page de titre ne soient pas présentes.
+% Par défaut elles le sont.
+%\newcommand{\leslogos}{N}
+
+% Choisissez si vous faites votre travail en option spécifique, en option complémentaire ou dans les ateliers interdisciplinaires
+
+%\newcommand{\loption}{Option spécifique}
+%\newcommand{\loption}{Specific option}
+%\newcommand{\loption}{Spezifische Option}
+\newcommand{\loption}{Option complémentaire}
+%\newcommand{\loption}{Additional option}
+%\newcommand{\loption}{Zusätzliche Möglichkeit}
+%\newcommand{\loption}{Atelier interdisciplinaire}
+%\newcommand{\loption}{Interdisciplinary workshop}
+%\newcommand{\loption}{Interdisziplinärer Arbeitsgruppe}
+
+% Choisissez votre domaine en décommentant la bonne ligne ou en en rajoutant une.
+
+%newcommand{\domaine}{Physique}
+%\newcommand{\domaine}{Physics}
+%\newcommand{\domaine}{Physik}
+
+\newcommand{\domaine}{Informatique}
+%\newcommand{\domaine}{Informatics}
+%\newcommand{\domaine}{Informatik}
+
+%\newcommand{\domaine}{Mathématiques}
+%\newcommand{\domaine}{Mathematics}
+%\newcommand{\domaine}{Mathematik}
+
+%---------------Citations, remerciements, acronymes, licence, site officiel, cdrom, index------------
+
+% Par défaut, il y a une page pouvant contenir des pensées. Décommentez si vous n'en voulez pas.
+% Le fichier à remplir du texte désiré est pagesspeciales/citations.tex
+%\newcommand{\unepensee}{N}
+
+% Par défaut, il y a une page pouvant de dédicaces. Décommentez si vous n'en voulez pas.
+% Le fichier à remplir du texte désiré est pagesspeciales/remerciements.tex
+%\newcommand{\unededicace}{N}
+
+% Par défaut, il y a une page de résumé. Décommentez si vous n'en voulez pas.
+% Le fichier à remplir du texte désiré est pagesspeciales/resume.tex
+%\newcommand{\unresume}{N}
+
+% Par défaut, il y a une page d'acronymes. Décommentez si vous n'en voulez pas.
+% Les acronymes sont à entrer dans le texte par \ac{BBC}
+% et le fichier à remplir pour en donner la traduction est pagesspeciales/acronymes.tex
+%\newcommand{\unacronyme}{N}
+
+% Par défaut, il y a une page de licence. Décommentez si vous n'en voulez pas.
+% Le fichier à remplir pour décrire le site est pagesspeciales/licence.tex
+%\newcommand{\unelicence}{N}
+
+% Par défaut, il y a une page sur le site du travail. Décommentez si vous n'en voulez pas.
+% Le fichier à remplir pour le texte de la licence est pagesspeciales/website.tex
+%\newcommand{\unsite}{N}
+
+% Par défaut, il y a une page sur le cdrom du travail. Décommentez si vous n'en voulez pas.
+% Le fichier à remplir pour le texte de la licence est pagesspeciales/cdrom.tex
+%\newcommand{\uncdrom}{N}
+
+% Par défaut, il y a une page d'index. Décommentez si vous n'en voulez pas.
+% Il faut alors mettre les clés d'index avec \index{mot} et faire un make index.
+\newcommand{\unindex}{N}
+
+% Par défaut, il y a une page d'annexes. Décommentez si vous n'en voulez pas.
+% Vous pouvez utiliser la page d'annexes contenue dans le répertoire "chapitre"
+% pour y mettre vos annexes.
+%\newcommand{\lesannexes}{N}
+
+% Par défaut, il y a une page de notes de fin. Décommentez si vous n'en voulez pas.
+\newcommand{\lesnotesdefin}{N}
+
+%----------------Chapitres------------------------------------------------------------------------------
+% Le nombre de chapitres désirés
+\newcommand{\nbchap}{3}
+
+%----------------Annexes------------------------------------------------------------------------------
+% Le nombre d'annexes désirées
+\newcommand{\nbannexes}{3}
+
+%----------------Listes des figures, tables et listings-------------------------------------------------
+% Définition du titre de la liste des figures.
+
+% Si rien n'est défini, c'est-à-dire si la commande est commentée, c'est le module de gestion des
+% langues babel qui choisit la traduction, sauf pour le français où le choix s'est porté sur :
+% "Liste des figures" au lieu de "Table des figures" proposé par babel.
+% Si la traduction ne vous convient pas, vous pouvez mettre ce
+% que vous voulez pour la liste des figures. La commande doit alors être décommentée.
+%\newcommand{\titrelistedesfigures}{Liste des figures} % Car nom babel = Table des figures
+
+% Définition du titre de la liste des tableaux.
+% Si rien n'est défini, c'est-à-dire si la commande est commentée, c'est le module de gestion des
+% langues babel qui choisit la traduction.
+% Mais si la traduction ne vous convient pas, vous pouvez mettre ce que vous voulez pour la liste
+% des tableaux. La commande doit alors être décommentée.
+%\newcommand{\titrelistedestables}{Liste des tables}
+
+% Définition du titre de la liste des codes source.
+% Si rien n'est défini, c'est-à-dire si la commande est commentée, les traductions sont :
+% Liste des codes sources, Listings, Liste der Quellcodes.
+% Mais si la traduction ne vous convient pas, vous pouvez mettre ce que vous voulez pour la liste
+% des codes sources. La commande doit alors être décommentée.
+%\newcommand{\titrelistedescodes}{Liste des codes sources}
+
+% Définition du titre des notes finales.
+% Si rien n'est défini, c'est-à-dire si la commande est commentée, les traductions sont :
+% Notes finales, Endnotes, Endenoten.
+% Mais si la traduction ne vous convient pas, vous pouvez mettre ce que vous voulez pour la liste
+% des codes sources. La commande doit alors être décommentée.
+%\newcommand{\titrelistedesnotesdefin}{\textnormal{Liste des notes}}
+
+% Par défaut, il y a une liste des figures. Décommentez si vous n'en voulez pas.
+%\newcommand{\unelistefig}{N}
+
+% Par défaut, il y a une liste des crédits. Décommentez si vous n'en voulez pas.
+%\newcommand{\unelistecredits}{N}
+
+% Par défaut, il y a une liste des tables. Décommentez si vous n'en voulez pas.
+\newcommand{\unelistetbl}{N}
+
+% Par défaut, il y a une liste des codes sources. Décommentez si vous n'en voulez pas.
+%\newcommand{\unelistelst}{N}
+
+%----------------Flottants-------------------------------------------------------------
+% Définitions des préfixes des préfixes des références aux figures, tables et listings.
+% Par exemple : ... voir FIGURE 3.1 où FIGURE 3.1 est mis automatiquement et traduit en
+% fonction de la langue.
+% English: Figure, Table, Listing (default)
+% German: Abbildung, Tabelle, Listing
+% French: Figure, Table, Listing
+% Aucun préfixe n'est mis pour permettre des références du type :
+% ... voir figures 3.1, 3.2 et 3.3. Ici seuls les numéros sont des références.
+% Pour changer le nom des titre des références des légendes décommentez à souhait
+%\addto\captionsfrench{\def\figurename{Graphique}}
+%\addto\captionsfrench{\def\tablename{Tableau}}
+
+%----------------Figures----------------------------------------------------------------
+
+% Chemin vers le répertoire des figures. Vous pouvez ajouter d'autres chemins entre accolades
+% à l'intérieur des accolades principales.
+\graphicspath{{./images/}}
+
+% Insertion de figures ; copier coller dans les chapitres en fonction des besoins
+%\tmfigureB{NomFigureSansExtension}{Légende}{fig:votreLabel}	% Taille grande
+%\tmfigureN{NomFigureSansExtension}{Légende}{fig:votreLabel}	% Taille normale
+%\tmfigureS{NomFigureSansExtension}{Légende}{fig:votreLabel}	% Taille petite
+%\tmfigureT{NomFigureSansExtension}{Légende}{fig:votreLabel}	% Taille très petite
+
+%----------------Insertion de code : listings-----------------------------------------------
+
+% Seul latex est appelé par défaut. On peut charger d'autres languages pour les listings
+% selon le modèle de la ligne suivante. Voir le package listings pour les langages disponibles.
+%\lstloadlanguages{HTML,PHP,TeX}
+% Il faut ensuite placer [...,language=HTML,...] après l'appel \begin{lstlisting} pour définir
+% le language à utiliser dans un script particulier
+% Aussi on peut mettre du code latex pour référencer le numéro des lignes. Il faut alors avoir
+% recours à un caractère d'échappement sur le modèle suivant :
+% \lstloadlanguages{Python}
+% \lstset{language=Python,escapechar=|}
+% Après le caractère d'échappement, on peut alors placer une commande \label{} de référencement
+% qui permet d'avoir accès au numéro de la ligne dans le texte via \ref{}.
+\lstloadlanguages{TeX}
+
+%----------------Le texte-------------------------------------------------------------------
+
+% Réglage de l'indentation de la première ligne de chaque paragraphe
+%\parindent=0in		% pas d'indentation
+\parindent=0.1in	% petite indentation
+%\parindent=0.2in	% moyenne indentation
+%\parindent=0.3in	% grande indentation
+
+% Si vous désirez commenter du code latex sur plusieurs lignes, utilisez la forme :
+%\begin{comment} ... \end{comment}
+
+%-----------------Un index------------------------------------------------------------------
+
+% Il n'est pas nécessaire de réaliser un index. Par défaut, il n'y en a pas. Décommentez si vous en voulez un.
+% Pour construire le fichier d'index idx, il doit être compilé avec makeindex en ligne de commande.
+%\usepackage{makeidx} \makeindex

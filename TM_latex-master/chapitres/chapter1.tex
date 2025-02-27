@@ -1,0 +1,74 @@
+\chapter{Introduction}
+
+\section{Motivations et Objectifs}
+
+\subsection{Motivations}
+	L'informatique a toujours été une science que je considère commme incroyable, de par sa diversité et sa complexité. J'ambitionnais donc de me pencher sur un projet faisant partie de cette matière. Énormément de possibilités m'ont ouvert leurs portes, notamment la création d'un jeu vidéo réalisée à partir de Javascript. Cependant, suite à un scan d'un ordinateur infecté par un virus, je me suis intéressé au fonctionnement et au codage d'un malware. Ce sujet est complexe, c'est pourquoi peu d'informations sont à disposition. De plus, il nécessite énormement de prudence pour ne pas endommager son appareil. Malgré ceci, je privilégie ce concept à d'autres car chacun est libre de créer ce qu'il veut et grâce à ceci, j'obtiendrai davantage de connnaissances sur différents langages informatiques.  
+\subsection{Objectifs}
+	Je me suis fixé comme objectifs de créer plusieurs virus, dont un qui sera toujours le même mais en différentes langues. Aucun d'entre ceux-ci ne doit être dangereux et doit être facilement repérable sans même avoir besoin d'un antivirus.
+
+Le premier virus consiste à infecter l'un des fichiers de commande du répértoire bin. Dans ce cas-ci, l'infection se fera sur le programme ls. Ce processus sera basé sur un article dont la source sera placée dans la bibliographie de ce travail.
+
+
+Le deuxième sera nettement plus simple. Ce sera un programme qui affiche plusieurs messages d'erreur et force l'ordinateur à s'éteindre après 30 secondes. la création se fera en Batch sous Windows.
+
+Le troisième sera le même que le précédent mais en C afin d'avoir un exécutable. Ceci permettra aussi de voir s'il existe de grandes différences entre langages ou non.
+
+Je tente également de créer un virus en C++ qui bloquera les périphèriques de l'ordinateur jusqu'au prochain redémarrage. \citeweb{bVideo}
+
+Enfin, grâce à ssh et au premier virus de ce travail, une tentative de prise de contrôle d'un Raspberry Pi sera effectuée.
+   
+
+\section{Les virus}
+	Un virus biologique ou informatique est un dispositif qui se réplique. Le mot provient de Leonard Adleman \citeweb{dWikipedia} qui est un informaticien mais aussi un professeur en biologie moléculaire. Il a gagné le prix Turing en 2002; notamment grâce au fait qu'il ait contribué en cryptographie au RSA (un algorithme de cryptographie asymétrique).
+
+Au départ, un virus informatique n'était pas considéré comme malintentionné, cependant de nos jours, il est le plus souvent réputé comme pouvant être un logiciel malveillant. Néanmoins, on commence gentiment à considérer un virus comme étant simplement un programme qui contraint l'utilisation habituelle et sans faille d'un ordinateur, notamment en envoyant des messages d'erreur, en ouvrant diverses pages sans l'ordre de l'utilisateur, en supprimant des fichiers ou en arrêtant le contrôle de la souris, du clavier ou autre périphèrique. 
+
+
+Pour pouvoir se propager, il nécessite de s'infiltrer dans un logiciel hôte dans lequel il va se reproduire pour finalement se transmettre à d'autres utilisateurs. Ce transfert se produit généralement par échange de données numériques tels que : les réseaux, les clés USB, les disques durs, les CD-ROM, le bluetooth et bien d'autres. Ceci peut perturber l'ordinateur infecté suivant la dangerosité créée lors du codage du virus. \citeweb{aWikipedia} \citeweb{aCommentcamarche}      
+
+\subsection{Les différents types de virus}
+	Il existe différentes variétés de virus, les une plus utilisées que les autres. En voici certaines:
+
+- Le virus classique : est un programme écrit à l'aide d'un assembleur (langage machine qu'un humain peut lire) qui est également nommé comme étant un cheval de Troie. À chaque exécution, il y a activation du virus ou d'une action préalablement programmée. Le cheval de Troie \citeweb{bWikipedia} consiste à introduire un logiciel qui paraît fiable dans un ordinateur. Cependant, ce logiciel est créé de manière malveillante et prend place dans la machine sans que l'utilisateur s'en aperçoive. 
+Ceci peut par exemple afficher un message -d'erreur ou un simple texte-, supprimer certaines fonctions de l'os ou détruire des données de l'ordinateur.  
+
+- le macrovirus \citeweb{cWikipedia} \citeweb{FuturaTech} : s'attaque aux macros installés dans l'os, principalement dans Windows par son VBA. Il détériore le fonctionnement du logiciel en affectant et en contrôlant les fichiers de l'utilisateur. Sa transmition est faite par courriels ou URL piégés. Dans le cas de Microsoft Office, on peut citer Word, PowerPoint, Excel, One drive, Outlook, etc. qui sont les principaux concernés.
+
+- le virus de boot\citeweb{Assiste} (bootkit, virus de secteur d'ammorçage\citeweb{Kaspersky}): n'est pas un  fichier, il s'infiltre dans le secteur d'ammorçage d'un disque dur. Ce disque est formaté, et lors du démarrage de l'ordinateur, avant même que le système d'exploitation et l'antivirus ne finissent de charger, la machine est déjà infectée.   
+
+- le virus batch (.bat) : ancien virus qui affectait principalement le système d'exploitation de Microsoft, MS-DOS. Le langage est très simple, cependant les commandes sont très lentes et ont un pouvoir faible sur les consoles actuelles. Néanmoins, ce type de virus existe toujours.
+  
+
+\subsection{L'histoire des grands virus}
+Le tout premier virus créé sur ordinateur est apparu en 1986 par deux frères Pakistanais qui possédaient une société informatique. Cette entreprise s'appelait "Brain", nom que le virus prendra. Il infectait les disquettes (anciens disques durs avec peu d'espace de stockage comparé à actuellement) pour ralentir les ordinateurs. Ce programme est inoffensif et n'a pas engendré de frais à quiconque. Il est considéré comme le premier virus diffusé au monde. 
+
+En 2000 vient le macro-virus Melissa. Il passe par Microsoft Outlook en envoyant des mails. L'expédieur fait passer son message comme important et demande à son destinataire d'ouvrir le document qui se trouve en annexe. Ce document était nommé "list.doc" et lors de son ouverture, de nombreux sites érotiques s'ouvraient. Ce qui est important dans ce virus est sa manière de transmition qui va être adoptée par la suite par de nombreux autres.
+
+Le virus I Love You se propagea plus de 40 millions de fois en moins de deux jours. Il s'inspire de la même méthode de propagation que Melissa mais cette fois-ci en nommant le document comme "LOVE-LETTER-FOR-YOU.txt". Malgré son extention, ce document était codé en vbs. Son fonctionnement? Il remplace les fichiers de l'utilisateur et le renomme "ILOVEYOU". Pendant ce temps, le mail reçu est envoyé à toutes les personnes du carnet d'adresses de l'ordinateur infecté et le fait en boucle. Ce virus est considéré comme le plus important de l'histoire.   
+    
+En 2009, survient un virus principalement utilisé aux \'Etats-Unis, le virus Zeus Bot (ou Zeus). Celui-ci est un cheval de troie qui s'infiltre dans Windows, puis, dans les sites internet où des formulaires incluant les données de cartes bancaires sont demandés. Dès lors, l'accès au mot de passe et donc à la carte sont récupérés par le hacker. Zeus est un \textit{keylogger} qui s'est attaqué à plus de 70'000 personnes, principalement par le marché online de plusieures firmes et multinationales.  
+
+C'est en mars 2012 qu'apparaît le cheval de Troie "Locky". Un système demandant une rançon (ransomware) qui est principalement transmis par e-mail, puis se propageant ensuite par réseau. Il était camouflé en tant que facture, celle-ci devait s'ouvrir depuis les macros de Microsoft Word. Lorsque les macros sont activées, le virus s'enclenche et crypte tous les fichiers de l'utilisateur (et peut également en supprimer). Pour pouvoir les récupérer, il faudra donner une somme en \textit{Bitcoin}. Somme qui peut être réglée suite au téléchargement programmé par le virus de Tor, un réseau informatique rendant les connections invisibles.
+
+Enfin arrive Jigsaw, qui vient des nombreux films "SAW"; Jigsaw est la marionnette qui apparaît dans chacun des films et est le symbôle de ceux-ci. Tout comme Locky; c'est un ransomware, donc un système demandant des rançons. Il se propage également par courrier électronique. Lorsque l'utilisateur installe le programme qui se trouve dans le courriel, celui-ci va crypter tous ces fichiers. Suite à cela, la marionnette apparaît puis dit la fameuse phrase "on va jouer à un jeu". Ce "jeu" est, tout comme Locky, de payer une somme pour récupérer ses fichiers. Néanmoins, le temps limite est de 24 heures, sans quoi il se pourrait que les fichiers ne puissent plus être récupérés. Certain spécialistes ont réussi à décrypter les sauvegardes mais il se pourrait que le virus puisse encore être invisible.
+\medskip
+\citeweb{Supinfo} \citeweb{aVideo}   
+\section{Démarche}
+	Il est avant tout préférable de copier tous les packages des systèmes qu'on va employer sur une ou plusieurs cartes SD vierges. Au cas où un incident arrive et détruise certains des fichiers vitaux des machines. Sur Raspberry Pi, il faut aller dans "accessoires" puis sur "SD Card Copier". La copie peut prendre un certain temps. En outre, Raspberry a créé des forums pour les éventuelles questions sur le site \citeweb{Forum}. 
+	
+J'ai choisi d'écrire ce travail de maturité	en \LaTeX, système qui compose des documents créé en 1983. C'est un logiciel libre qui forme les documents avec une mise en page professionnelle, sans que le créateur ait constament à changer sa forme.  
+
+Sous l'utilisation de Windows, j'incite à télécharger \textit{Geany} qui est l'un des meilleurs éditeurs de texte que l'on peut trouver gratuitement. J'y ai codé en Python mais aussi en C. Pour ce langage mais aussi pour C++, il faudra impérativement un compilateur qui parvienne à changer vos extensions; par exemple de ".c" à ".exe". Ceci fera passer votre document écrit en un exécutable. \textit{GNU GCC} est probablement le plus utilisé du moment et le meilleur pour un prix nul. Il existe aussi \textit{Code::Blocks} ou \textit{Micrososft Visual Studio}.
+ 
+Le programme écrit en Batch n'a pas besoin d'assembleur. Il peut être écrit dans le block-notes de Windows qui est déjà installé lorsqu'on possède cet os. Cependant, lors de son enregistrement, il faudra changer l'extension ".txt", écrire soi-même ".bat" et choisir "Tous les fichiers" afin d'avoir la forme souhaitée. 
+
+Sous Raspberry Pi, je conseille également \textit{Geany}; auquel on ajoutera \textit{Terminator}, terminal facilement ajoutable après installation : Geany > Ctrl+Alt+P > Outils. Il suffira donc de placer ce qui suit devant la demande de terminal : "terminator -e "/bin/sh \%c".
+Si Python devrait être préalablement installé sous Raspbian, il faut tout de même veiller à ce qu'il soit à jour. Durant ce travail, la version minimale requise employée est la 2.7.13. 
+
+Enfin, la plus grande partie des expérimentations qui ont été faites, ont été créées à partir du système d'exploitation Windows 10. Il se pourrait donc que certains scripts ne soient pas compatibles avec les versions précédentes et donc, que le virus ne fonctionne pas. J'ai néanmoins créé un virus qui peut infecter toutes les plateformes Windows, mais qui a une fonction qui ne peut être éxécutée que sur une version inférieure à Windows 7.
+   
+
+%\begin{lstlisting}[float,caption={Le manifeste : %%manifest.manifest},label={listing:commentlong}]
+%\begin{comment} ... \end{comment}
+%\end{lstlisting}

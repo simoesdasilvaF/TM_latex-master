@@ -1,0 +1,620 @@
+%-------------------------------------------------------------------------------
+% Module créé par Vincent Guyot pour définir un modèle de travail de maturité
+% Mis à jour le 2 février 2012
+
+% Ce fichier est soumis à la licence libre GFDL dont on peut trouver
+% les conditions sur le net.
+%--------------------------------------------------------------------------------
+
+\ProvidesPackage{TM}
+
+% Définitions générales
+\usepackage[german,english,french]{babel}	% Gestion de la typographie française
+\usepackage[utf8]{inputenc}	% Accents
+%\usepackage[OT1]{fontenc}	% Encodage
+\usepackage[T1]{fontenc}	% Encodage
+
+% Géométrie de la page
+\usepackage{geometry}
+%\geometry{verbose,a4paper,lmargin=2cm,rmargin=2cm}	% règle les marges de la page
+
+% Structure du document
+\usepackage{emptypage}
+\usepackage{nextpage}		% Permet \cleartooddpage, \cleartoevenpage et \cleartooddpage[\thispagestyle{empty}]
+\usepackage[Lenny]{fncychap}	% Titres de chapitres avec un filet
+\usepackage{fancybox}		% Styles de filets de boites
+%\usepackage{fancyheadings}	% Entêtes et pieds de page
+\usepackage{fancyhdr}
+\fancypagestyle{plain}{%
+\fancyhf{} % clear all header and footer fields
+\fancyfoot[C]{\bfseries \thepage} % except the center
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}}
+\setlength{\headheight}{22.5pt}		% pour éliminer une erreur qui disait que la largeur de l'entête était trop petite (12pt)
+
+%\usepackage{minitoc}		% Minitable des matières des chapitres
+\usepackage{layout}		% Redéfinition des caractéristiques de la page
+\usepackage{setspace}		% Interligne du document
+
+% Bibliographie
+\usepackage{multibib}		% Plusieurs bibliographies
+\usepackage{tocloft}		% Pour faire une table des crédits photographiques
+
+% Images
+\usepackage{graphicx}		% Placement des figures
+\usepackage{epsfig}
+
+% Tableaux
+\usepackage{longtable}
+\usepackage{multirow}		% Fusion des lignes d'un tableau
+\usepackage{longtable}		% Longues tables
+\usepackage{tabularx}		% Tableaux
+\usepackage{rotating}		% Rotation
+\usepackage{lscape}			% En format paysage
+
+% Listes
+\usepackage{paralist}		% Divers styles de listes
+\usepackage{textcase}		% Mettre en majuscule ou minuscule sans bugs
+
+% Listings
+\usepackage{listings}		% Listings et sa configuration pour les accents dans le code
+%\lstloadlanguages{Python}
+%\lstset{language=Python,escapechar=|}
+\lstset{literate=
+  {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+  {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+  {à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1
+  {À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1
+  {ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1
+  {Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1
+  {â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1
+  {Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1
+  {œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1
+  {ű}{{\H{u}}}1 {Ű}{{\H{U}}}1 {ő}{{\H{o}}}1 {Ő}{{\H{O}}}1
+  {ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1
+  {€}{{\EUR}}1 {£}{{\pounds}}1
+}
+
+% Subfig
+\usepackage{subfig}			% Pour faire des sous-figures
+
+% Couleurs
+\usepackage{color}		% Couleurs
+
+% Environnements particuliers
+\usepackage[hyphens]{url}		% Urls
+\usepackage{moreverb}		% Texte non interprété. Plus complet que verbatim
+\usepackage{acronym}		% Acronymes
+\usepackage{amsmath}	% pour divers modules de maths
+
+% Notes de fin de document
+\usepackage{endnotes}
+% Notes de bas de page
+\renewcommand{\thefootnote}{\alph{footnote}} % pour mettre les notes de bas de page en alphabétique
+
+\renewcommand{\enoteheading}{% Redéfinit les entêtes de notes
+  \chapter{\notesname}% Redéfinit le titre des notes comme chapitre
+  %\newcommand{\titreheaderendnotes}{\MakeUp­per­case{\notesname}}
+  %\markboth{NOTES FINALES}{NOTES FINALES}%
+  }
+
+% Divers
+\usepackage{ifthen}		% Tests
+\usepackage{ifdraft}	% Tests sur la présence de draft dans le documentclass
+\usepackage{calc}		% Calculs avec latex
+%\usepackage{eurosym}		% Symbole euro
+\usepackage{comment}		% Commentaires sur plusieurs lignes
+\usepackage{shapepar}		% Justification du texte selon une forme
+\usepackage{lipsum}
+\usepackage{makeidx}		% pour permettre de construire un index
+\makeindex
+
+% Reste à faire
+\usepackage[obeyDraft]{todonotes}
+
+%--------------Gestion des langues------------------------------------------------------
+
+\newcommand{\choixdelalangue}{
+\ifthenelse{\equal{\lalangue}{francais}}{
+    \selectlanguage{french}	% Gestion de la typographie française
+    }{
+      \ifthenelse{\equal{\lalangue}{english}}{
+        \selectlanguage{english}	% Gestion de la typographie anglaise
+      }{
+        \ifthenelse{\equal{\lalangue}{deutch}}{
+          \selectlanguage{german}	% Gestion de la typographie allemande
+        }{}
+      }
+    }
+}
+
+%--------------Définition des fontes-----------------------------------------------------------------------------------------------
+% Choisissez la fonte que vous désirez : \usefont{encoding}{family}{series}{shape}
+\newcommand{\courrier}{\fontfamily{pcr}\selectfont}
+\newcommand{\helv}{\fontfamily{phv}\selectfont}
+\newcommand{\helvbold}{\fontfamily{phv}\fontseries{b}\selectfont}
+%\newcommand{\helv}{\fontfamily{phv}\fontseries{b}\fontsize{9}{11}\selectfont}
+%\newcommand{\helv}{\fontfamily{phv}}\selectfont}
+\newcommand{\palatino}{\fontfamily{ppl}\selectfont}
+\newcommand{\cmdunhill}{\usefont{OT1}{cmdh}{m}{n}} % computer modern dunhill
+
+%----------------Les éléments de la page de titre------------------------------------------------------------------------------------
+% La date du travail
+\newcommand{\workdate}{\workdatemonth~\workdateyear}
+
+% Titre du travail
+\newcommand{\theworktitle}{
+    \begin{Huge}
+        {\sf \worktitle \\}
+    \end{Huge}
+    \vspace{0.2cm}%
+    \ifthenelse{\equal{\worksubtitle}{}}{}{\begin{Large} {\sf \worksubtitle} \end{Large}}%
+}
+
+% Pied de page
+\newcommand{\titlepagefooter}{
+\ifthenelse{\equal{\loption}{Atelier interdisciplinaire} \or \equal{\loption}{Interdisciplinary workshop} \or \equal{\loption}{Interdisziplinärer Arbeitsgruppe}}{\newcommand{\oc}{\loption}}{\newcommand{\oc}{\loption{} \textsc{\domaine}}}
+\begin{tabular}{lcr} \hline
+ \ifthenelse{\isundefined{\leslogos}}{
+  \multirow{5}{*}{\includegraphics[height=1cm]{logo1}} &  & \multirow{5}{*}{\includegraphics[height=1cm]{logo2}} \\
+  }{\\}
+  & \oc &  \\
+  & \ifthenelse{\isundefined{\ecole}}
+  	{\ifthenelse{\equal{\lalangue}{english}}
+  		{\newcommand{\ecole}{Blaise-Cendrars high school}\ecole}
+  		{\ifthenelse{\equal{\lalangue}{deutch}}
+  			{\newcommand{\ecole}{Gymnasium Blaise Cendrars}\ecole}
+  			{\newcommand{\ecole}{Lycée Blaise-Cendrars}\ecole}
+  		}
+  	}{\ecole} &  \\
+  & \ifthenelse{\isundefined{\adressedelecole}}
+  	{\ifthenelse{\equal{\lalangue}{english}}
+  		{\newcommand{\adressedelecole}{La Chaux-de-Fonds (Switzerland)}%
+  		\adressedelecole}
+  		{\ifthenelse{\equal{\lalangue}{deutch}}
+  			{\newcommand{\adressedelecole}{La Chaux-de-Fonds (Schweiz)}%
+  			\adressedelecole}
+  			{\newcommand{\adressedelecole}{La Chaux-de-Fonds (Suisse)}%
+  			\adressedelecole}
+  		}
+  	}{\adressedelecole} &  \\
+  & & \\
+\end{tabular}
+}
+
+%-------------------Les différentes pages---------------------------------------------------------
+% Définit le style des entête et pieds de page.
+\fancypagestyle{videavecpage}{%
+    \fancyhead{}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+\fancypagestyle{videsanspage}{%
+    \fancyhead{}
+    \fancyfoot{}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+\fancypagestyle{laposteface}{%
+	\fancyhf{}
+	\renewcommand{\chaptermark}[1]{\markboth{\uppercase{##1}}{}}
+    \fancyhead[RE,LO,LE,RO]{\leftmark}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+\pagestyle{fancy}
+% Retire le filet sous l'entête
+\renewcommand{\headrulewidth}{0pt}
+
+% Profondeur de la table des matières
+\setcounter{tocdepth}{5}
+
+% Page de pensée ou de citations
+\newcommand{\pensee}{
+  \ifthenelse{\isundefined{\unepensee}}{\include{pagesspeciales/citations}}
+}
+
+% Page de préambule/dédicace/remerciements
+\newcommand{\dedicace}{
+  \ifthenelse{\isundefined{\unededicace}}{\include{pagesspeciales/remerciements}}
+}
+
+% Page de résumé
+\newcommand{\resume}{
+  \ifthenelse{\isundefined{\unresume}}{\include{pagesspeciales/resume}}
+}
+
+% Liste des figures
+\newcommand{\listefig}{
+  \ifthenelse{\isundefined{\unelistefig}}{
+  	\ifthenelse{\isundefined{\titrelistedesfigures}}{
+  	  \ifthenelse{\equal{\lalangue}{francais}}{
+  	    \renewcommand{\listfigurename}{Liste des figures}}{}
+  	    }{
+  		\renewcommand{\listfigurename}{\titrelistedesfigures}
+  		}
+  \newpage
+  \addcontentsline{toc}{chapter}{\listfigurename}
+  \listoffigures    % liste des figures   (fichier .lof) 
+  }
+}
+
+% Commande de crédit photographique
+\newcommand{\listcreditsname}{\textnormal{Crédits photographiques}}
+\newlistof{credits}{exp}{\listcreditsname}
+\newcommand{\credit}[1]{%
+		\refstepcounter{credits}
+		\addcontentsline{exp}{credits}
+		{\protect\numberline{\thefigure } #1}\par}
+
+% Crédits photographiques
+\newcommand{\listecredits}{
+  \ifthenelse{\isundefined{\unelistecredits}}{
+    \listofcredits    % liste des crédits photographiques
+    \cleartooddpage
+    }
+}
+
+% Liste des tables
+\newcommand{\listetbl}{
+  \ifthenelse{\isundefined{\unelistetbl}}{
+    \ifthenelse{\isundefined{\titrelistedestables}}{
+  		}
+  		{\renewcommand{\listtablename}{\titrelistedestables}}
+    \newpage
+    \addcontentsline{toc}{chapter}{\listtablename}
+    \listoftables    % liste des tables    (fichier .lot)
+    }
+}
+
+% Liste des listings
+\newcommand{\listelst}{
+  \ifthenelse{\isundefined{\unelistelst}}{
+    \ifthenelse{\isundefined{\titrelistedescodes}}{
+  	   \ifthenelse{\equal{\lalangue}{english}}{
+  	     \renewcommand{\lstlistlistingname}{Listings}}
+  	     {\ifthenelse{\equal{\lalangue}{deutch}}{
+			\renewcommand{\lstlistlistingname}{Liste der Quellcodes}}
+			{\renewcommand{\lstlistlistingname}{Liste des codes sources}} 	     
+  	   }
+  	}{\renewcommand{\lstlistlistingname}{\titrelistedescodes}}
+    \newpage
+    \addcontentsline{toc}{chapter}{\lstlistlistingname}
+    \lstlistoflistings    % liste des listings    (fichier .lol)
+  }
+}
+
+% Liste des acronymes
+\newcommand{\acronyme}{
+  \ifthenelse{\isundefined{\unacronyme}}{\include{pagesspeciales/acronymes}}{}
+}
+
+% Page de licence
+\newcommand{\licence}{
+  \ifthenelse{\isundefined{\unelicence}}{\include{pagesspeciales/licence}}{}
+}
+
+% Page de site officiel
+\newcommand{\site}{
+  \ifthenelse{\isundefined{\unsite}}{\include{pagesspeciales/website}}{}
+}
+
+% Page de cdrom officiel
+\newcommand{\cdrom}{
+  \ifthenelse{\isundefined{\uncdrom}}{\include{pagesspeciales/cdrom}}{}
+}
+
+% Page de note de fin
+\newcommand{\notesdefin}{
+  \ifthenelse{\isundefined{\lesnotesdefin}}{
+  	\ifthenelse{\isundefined{\titrelistedesnotesdefin}}{
+	  \ifthenelse{\equal{\lalangue}{english}}{
+	    \renewcommand\notesname{Endnotes}
+	    }{\ifthenelse{\equal{\lalangue}{deutch}}{
+	    \renewcommand\notesname{Endnoten}
+	    }{\renewcommand\notesname{Notes finales}}
+	  }
+	}{\renewcommand\notesname{\titrelistedesnotesdefin}}
+    \theendnotes
+    \cleartooddpage
+  }
+}
+
+% Page d'index
+\newcommand{\lindex}{
+  \ifthenelse{\isundefined{\unindex}}{
+  \addcontentsline{toc}{chapter}{\indexname}
+  \printindex}{}
+}
+
+% Pages d'annexes
+\newcommand{\annexes}{
+  \ifthenelse{\isundefined{\lesannexes}}{\touteslesannexes}
+}
+
+%------------------Les chapitres-------------------------------------------------------
+\newcommand{\leschapitres}{
+  \ifthenelse{\not{\equal{\nbchap}{}}}{
+    \newcounter{comptechap}
+    \def\StartValue{1}
+    \def\MaxValue{\nbchap}
+
+    \setcounter{comptechap}{\StartValue}
+    \whiledo{\not{\value{comptechap}>\MaxValue}}{
+      \include{chapitres/chapter\thecomptechap}
+      \stepcounter{comptechap}
+    }
+  }{}
+}
+
+%------------------Les annexes-------------------------------------------------------
+\newcommand{\touteslesannexes}{
+  \ifthenelse{\not{\equal{\nbannexes}{}}}{
+    \newcounter{compteannexes}
+    \def\StartValue{1}
+    \def\MaxValue{\nbannexes}
+
+    \setcounter{compteannexes}{\StartValue}
+    \whiledo{\not{\value{compteannexes}>\MaxValue}}{
+      \include{chapitres/annexe\thecompteannexes}
+      \stepcounter{compteannexes}
+    }
+  }{}
+}
+
+%------------------Environnements-----------------------------------------
+% Redéfinition de l'environnement de citations
+\newcounter{Citctr} \newsavebox{\Citname}
+\newenvironment{Citation}[1]
+  {%\ifthenelse{\equal{#1}{}}{\typein{A reference is missing !}}%
+   \sbox\Citname{\emph{#1}}%
+   \refstepcounter{Citctr}\begin{description}
+   \item[Citation \arabic{Citctr}]}
+  {\hspace*{\fill}\nolinebreak[1]%
+   \quad\hspace*{\fill}%
+   \finalhyphendemerits=0
+   \usebox{\Citname}\end{description} 
+   }
+
+%------------------Commandes diverses------------------------------------------
+% Redéfinition de la commande \url
+\renewcommand\url{\begingroup \small \urlstyle{sf}\Url}
+
+% Commande pour les urls dans la bibliographie des sites web
+% Par exemple \biburl{http://www.cvgg.org/}{1}{January}{2012}
+\newcommand{\lastVisited}[3]{
+\ifthenelse{\equal{\lalangue}{francais}}{
+  		(dernière consultation le #1 #2 #3)
+    }{
+    	\ifthenelse{\equal{\lalangue}{english}}{
+			(last consulted on #2 #1, #3)
+    	}{
+			\ifthenelse{\equal{\lalangue}{deutch}}{
+			(letzte Konsultation zu #1 #2 #3)
+    		}{} 	
+    	}
+    }
+}
+\newcommand{\biburl}[4]{{\apath{#1} \lastVisited{#2}{#3}{#4}}}
+
+% Par exemple \biburlarticle{http://www.cvgg.org/article.html}{14}{juillet}{2012}
+\newcommand{\biburlarticle}[4]{[Obtenu le #2 #3 #4 de {\small\apath{#1}}]}
+
+% Définition du titre de la bibliographie web
+\newcommand{\titredelabiblioweb}{
+  	\ifthenelse{\equal{\lalangue}{francais}}{
+  		\newcites{web}{Sites web}
+    }{
+    	\ifthenelse{\equal{\lalangue}{english}}{
+			\newcites{web}{Websites}
+    	}{
+			\ifthenelse{\equal{\lalangue}{deutch}}{
+			\newcites{web}{Webseiten}
+    		}{} 	
+    	}
+    }
+}
+
+\newcommand{\online}{[online]}
+
+% Impression d'un filigrane de version provisoire.
+%  Prints your review date and 'Draft Version' (From Josullvn, CS, CMU)
+%  Seems no to work properly on Linux. On Windows OK !
+% Ai retiré la date, car les accents étaient mal traduits malgré babel.
+% Mais la date provisoire est définie sur la page de titre.
+\newcommand{\reviewtimetoday}[2]{\special{!userdict begin
+/bop-hook{gsave 20 710 translate 45 rotate 0.8 setgray
+/Times-Roman findfont 18 scalefont setfont 0 0   moveto () show
+0 -12 moveto (#2) show grestore}def end}}
+
+\newcommand{\draftoufinal}{
+  \ifdraft{
+    \ifthenelse{\equal{\lalangue}{english}}{
+      \reviewtimetoday{\today}{* Draft Version *}
+    }{
+     \ifthenelse{\equal{\lalangue}{deutch}}{
+        \reviewtimetoday{\today}{* Draft *}  
+       }{
+        \reviewtimetoday{\today}{* Version provisoire *}
+       }
+    }
+  }
+}
+
+% Entête et pied de page
+\renewcommand{\chaptermark}[1]{  % pour avoir Chapter 1. Introduction
+\markboth{\chaptername\
+\thechapter.\ #1}{}}
+
+\renewcommand{\sectionmark}[1]{ % pour avoir 1.2. Strucutre du document
+\markright{\thesection.\ #1}{}}
+
+%\lhead[\fancyplain{} \rmfamily \thepage]{\fancyplain{} \itshape \rightmark}
+%\lhead[\fancyplain{} \itshape \rightmark]{\fancyplain{} \itshape \rightmark}
+%\chead{}
+%\rhead[\fancyplain{} \itshape \leftmark]{\fancyplain{} \rmfamily \thepage}
+%\rhead{}
+\fancyhead[RO,LE]{\fancyplain{} \itshape \rightmark}
+\fancyfoot[C]{\fancyplain{}  \rmfamily \thepage}
+%\lfoot{}
+%\cfoot{}
+%\cfoot[\fancyplain{} \rmfamily \thepage]{\fancyplain{}  \rmfamily \thepage}
+%\rfoot{}
+
+% Pour les énumérations à l'intérieur d'un paragraphe, par exemple, "il y a trois possibilités :
+% (i) blabla1 (ii) blabla2 (iii) blabla3"
+\newenvironment{sinparaenum}%
+{\begin{inparaenum}[\itshape(i)\upshape]}%
+{\end{inparaenum}}
+
+%-------------Les figures---------------------------------------------------
+% Dimensions des figures insérées.
+\newlength{\bigfigurewidth}
+\setlength{\bigfigurewidth}{0.96\textwidth}
+
+\newlength{\normalfigurewidth}
+\setlength{\normalfigurewidth}{0.77\textwidth}
+
+\newlength{\smallfigurewidth}
+\setlength{\smallfigurewidth}{0.57\textwidth}
+
+\newlength{\tinyfigurewidth}
+\setlength{\tinyfigurewidth}{0.27\textwidth}
+
+% La structure pour insérer les figures.
+\newcommand{\tmfigure}[5]{
+  \begin{figure} [t]
+    \begin{center}
+       \includegraphics[width=#2]{#1}
+       \caption{\label{#4} #3}
+       \credit{#5}
+     \end{center}
+  \end{figure}
+}
+
+% Quatre types de figures sont possibles : grande (B), normale (N), petite (S) et très petite (T).
+\newcommand{\tmfigureB}[4]{\tmfigure{#1}{\bigfigurewidth}{#2}{#3}{#4}}
+\newcommand{\tmfigureN}[4]{\tmfigure{#1}{\normalfigurewidth}{#2}{#3}{#4}}
+\newcommand{\tmfigureS}[4]{\tmfigure{#1}{\smallfigurewidth}{#2}{#3}{#4}}
+\newcommand{\tmfigureT}[4]{\tmfigure{#1}{\tinyfigurewidth}{#2}{#3}{#4}}
+
+%----------------Les références-----------------------------------------------------------------
+% Commande pour référencer les figures
+% Je préfère sans le mot 'figure' automatiquement devant car on peut devoir le mettre au pluriel
+\newcommand{\figref}[1]{\ref{#1}}
+
+% Commande pour référencer les tables
+\newcommand{\tableref}[1]{\ref{#1}}
+
+% Commande pour référencer les codes
+\newcommand{\listingref}[1]{\ref{#1}}
+
+%----------------Le code en ligne-------------------------------------------------------------
+% On peut utiliser cette commande pour le code en ligne
+%\newcommand{\src}[1]{\begin{sf}\small{#1}\end{sf}}
+\newcommand\src[1]{{\helv{\footnotesize{#1}}}}           % le code source est mis en Helvetica
+% Une meilleures solution pourrait être :
+% \newcommand{\src}[1]{\listinline!#1!}
+% Finalement, il est plus simple de mettre directement : \lstinline|code|
+
+
+\newcommand\footsrc[1]{{\helv{\scriptsize{#1}}}}  % le code source est mis en Helvetica - dans les notes de bas de page
+
+% On peut utiliser cette commande pour les url, chemins, ...
+\newcommand{\apath}[1]{\url{#1}}
+
+
+\newcommand*{\indexsection}[1]{%
+  \ifx\empty#1\empty\else
+  \hspace{0pt plus 2fil}{{\sectfont #1}}\hspace{0pt plus
+    1fil}\nopagebreak
+  \fi
+}
+
+% Pour mettre le texte entre guillemets. Par exemple : \squote{de facto}
+\newcommand{\squote}[1]{``#1''}
+
+
+% Définition et configuration de l'environnement listings
+\definecolor{listinggray}{gray}{0.9}
+\definecolor{commentgreen}{rgb}{0,0.7,0} 
+
+\lstset {
+showstringspaces=false,
+frame=none,
+extendedchars=true,
+basicstyle=\normalfont\helv\footnotesize,
+numbers=left,
+numberstyle=\tiny,
+numbersep=5pt,
+stepnumber=2,
+language=Java,
+breaklines,
+tabsize=2,
+backgroundcolor=\color{listinggray},
+rulecolor=\color{blue},
+linewidth=\linewidth,
+keywordstyle=\bfseries\color{blue},
+commentstyle=\color{commentgreen},
+captionpos=b,
+abovecaptionskip=\medskipamount,
+belowcaptionskip=\medskipamount,
+escapeinside={(*@}{@*)},
+}
+
+% Ce code permet de compiler avec latex ou pdflatex en changeant le suffix du nom
+% de fichier des figures :
+%.eps si latex est utilisé et .pdf, .jpg ou .png si pdflatex est utilisé
+%%%%%%%%%% Attention, j'ai rajouté les lignes : \ifnum\pdfoutput=0 \pdffalse \else pour corriger le fait qu'il ne choisissait pas
+%%%%%%%%%% les eps à la compilation latex
+\newif\ifpdf
+\ifx\pdfoutput\undefined
+\pdffalse % on ne compile pas en pdflatex
+\DeclareGraphicsExtensions{.eps} \else
+\ifnum\pdfoutput=0
+      \pdffalse
+   \else
+\pdfoutput=1 % on compile en pdflatex
+\pdfcompresslevel=9     % niveau de compression pour le texte et les images ;
+\pdftrue \DeclareGraphicsExtensions{.pdf,.jpg,.png} \fi
+
+\ifpdf
+
+%%% passer les références en lien
+%\usepackage[pdftex,pagebackref=true,plainpages=false,colorlinks=false,pdfborder=0]{hyperref}
+\usepackage[pdftex,pagebackref=true,plainpages=false,colorlinks=true,pdfborder=0,linkcolor=blue, citecolor=blue, urlcolor=blue]{hyperref}
+%plainpages=false: activer les liens même si la numérotation est réinitialisée après le titre
+%autres options... backref, pagebackref (liens en retour de l'index vers les chapitres/pages) urlcolor=blue,citecolor=red
+
+\else
+
+\fi
+
+% Définition des valeurs de pénalités pour éléminer les coupures de premières et dernières lignes de page.
+\clubpenalty=9999
+\widowpenalty=9999
+
+\newcommand{\corrbug}{
+% --------------------------------------------------------
+% Correction d'un petit bug de listings qui mène sans cela à un : Undefined control sequence. \lstlistoflistings
+\makeatletter
+\@ifundefined{float@listhead}{}{%
+    \renewcommand*{\lstlistoflistings}{%
+        \begingroup
+    	    \if@twocolumn
+                \@restonecoltrue\onecolumn
+            \else
+                \@restonecolfalse
+            \fi
+            \float@listhead{\lstlistlistingname}%
+            \setlength{\parskip}{\z@}%
+            \setlength{\parindent}{\z@}%
+            \setlength{\parfillskip}{\z@ \@plus 1fil}%
+            \@starttoc{lol}%
+            \if@restonecol\twocolumn\fi
+        \endgroup
+    }%
+}
+\makeatother
+% --------------------------------------------------------
+}

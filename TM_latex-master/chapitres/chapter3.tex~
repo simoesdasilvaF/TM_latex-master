@@ -1,0 +1,38 @@
+\chapter{Structure et compilation}\label{suite}\index{suite}
+Sans revenir sur le fonctionnement de \LaTeX, rappelons qu'il est nécessaire de passer par une étape de compilation pour obtenir le document final. Cette compilation nécessite l'utilisation d'un grand nombre de fichiers qui sont organisés selon une structure bien précise.
+
+\section{Structure de fichiers}
+
+\subsection{Description}
+Pour s'y retrouver dans la multitude des fichiers qui peuplent le répertoire dans lequel se trouve le modèle de travail de maturité, il faut partir de la racine du projet, c'est à dire le répertoire dans lequel se trouve le fichier principal nommé : \verb|main.tex|. A l'intérieur de celui-ci se trouvent plusieurs répertoires : \verb|pagesspeciales|, \verb|chapitres|, \verb|images| et \verb|code_source| et plusieurs fichiers : toute une série de \verb|main.|, des \verb|config.|, des \verb|TM.|, des \verb|web| et \verb|fancyheadings.sty|, \verb|multibib.sty| et \verb|licence.txt|.
+
+Les \verb|main.| sont issus de la compilation. A part \verb|main.tex|, il ne faut pas les toucher. Même \verb|main.tex| ne devrait pas être modifié. On ne doit que le compiler.
+
+Parmis les \verb|config.|, seul le fichier \verb|config.tex| doit être parcouru pour définir les réglages à faire pour adapter le modèle de travail de maturité à son propre travail de maturité. Il doit être impérativement lu.
+
+Parmis les \verb|TM.|, l'élément central est \verb|TM.sty|. C'est le fichier de macros qui permet le fonctionnement du modèle de travail de maturité. Il ne faut pas le toucher.
+
+Les \verb|web| servent à la bibliographie des pages web. Le fichier permettand de répertorier les différents sites web est \verb|webbib.bib|. C'est celui-ci qu'il faut remplir des références web. De la même manière, c'est le fichier \verb|mainbib.bib| qu'il faut remplir des références pour la bibliographie classique.
+
+Finalement, les fichiers \verb|fancyheadings.sty| et \verb|multibib.sty| sont nécessaires pour les entêtes et les deux bibliographies. Il ne faut pas les toucher. Le fichier \verb|licence.txt| donne lui le texte de la licence du travail.
+
+\bigskip
+Dans le répertoire \verb|pagesspéciales|, se trouvent les fichiers nécessaires à la définition des pages spéciales comme la page de titre (\verb|pagetitre.tex|), la page de citation et dédicaces (\verb|citations.tex|), la page de remerciements (\verb|remerciements.tex|, la page du résumé (\verb|resume.tex|, la page des acronymes (\verb|acronymes.tex|) et la page décrivant le site web éventuellement associé au travail de maturité (\verb|website.tex|).
+
+Dans le répertoire \verb|chapitres| se trouvent les différents chapitres du travail de maturité, ainsi que son introduction et sa conclusion. C'est dans ceux-ci qu'il faut travailler.
+
+Dans le répertoire \verb|images| se trouvent les images du travail de maturité. Elles doivent figurer sous deux formes : .eps et .jpg ou .png. Généralement on y met une version .eps et une version .jpg de chaque image.
+
+Finalement, dans le répertoire \verb|code_source| se trouvent éventuellement des codes sources informatiques qui vont figurer dans le travail de maturité.
+
+\subsection{Pratiquement}
+Le modèle de travail de maturité se présente sous le forme d'un répertoire zippé. Il faut donc tout d'abord le décompresser et lire le fichier \verb|Lisez-moi.txt| qui va vous diriger vers le présent texte qu'il faut lire.
+
+Puis, il faut tenter une première compilation du fichier \verb|main.tex| pour détecter d'éventuelles erreurs dues à l'éventuelle absence de packages nécessaires. Si c'est le cas, il faut les installer et refaire la compilation jusqu'à ce qu'il n'y ait plus d'erreurs.
+
+Alors le travail peut commencer.
+
+\section{Compilation}
+Pour compiler le document, il n'est théoriquement pas nécessaire de faire appel à un éditeur latex dédié. On peut tout faire à l'aide d'une bonne vieille console. Mais, il est évidemment plus pratique d'avoir recours à un éditeur comme Texmaker.
+
+Comme déjà dit, le document à compiler est \verb|main.tex|. A la fin, il est aussi nécessaire de préparer cette compilation pour permettre aux bibliographies d'être intégrées dans le document. Pour cela, il faut réaliser une première compilation, puis dans la console associée à Texmaker, exécuter successivement \lstinline|bibtex main| et \lstinline|bibtex web|

@@ -1,0 +1,21 @@
+\chapter{CD-ROM}\label{cdrom}
+Sur le CD-ROM présenté à la figure \ref{actual_cdrom} du projet Turn, vous trouverez une structure de type \squote{Subversion}\footnote{Un changement de serveur au lycée impliquant une réinstallation de Subversion ne me permet pas actuellement d'y avoir accès.} qui contient :
+\begin{itemize}
+\item le code source et
+\item la documentation de Turn
+\end{itemize} 
+La figure \ref{tree_view} fournit une image de la structure du CD-ROM,
+
+Le contenu du CD-ROM ne peut pas encore être téléchargé depuis le site de Turn (voir \ref{appendix_website}). Mais, rapidement cela devrait être possible étant donné les exigences de la licence GPL choisie.
+
+L'arbre ci-dessous constitue la structure du CD-ROM fourni. Dans le répertoire \verb|fr| se trouvent tous les fichiers nécessaires pour la compilation en \LaTeX du présent document. Dans le répertoire \verb|Turn| se trouvent tous les fichiers nécessaires à l'application. Vous trouverez aussi une sauvegarde de la base de donnée. Si vous désirez réinstaller Turn, sachez cependant que les utilisateur, mot de passe et nom de la base ont été effacés.
+
+%TODO: update the tree-view...
+\begin{figure}
+   \centering
+   \verbatimtabinput{figures/content_cdrom.txt}
+   \caption{Vue du contenu du CD-ROM}
+   \label{tree_view}
+\end{figure}
+
+\softengfigureN{cdrom}{Le CD-ROM du projet Turn}{actual_cdrom}
